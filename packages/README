@@ -1,0 +1,34 @@
+PhD research - main repository
+
+This repository provides source code used throughout the course of my PhD 
+research - see dependent respositories (e.g. publication material) for more 
+information.
+
+=== Contact ===
+
+Donagh Horgan
+E-mail: donaghh@rennes.ucc.ie
+
+
+=== Copyright ===
+
+Copyright (C) 2011-2013 Donagh Horgan. Licensed under GPLv3, see COPYING for 
+more info.
+
+
+=== Usage ===
+
+The repository is organised as follows:
+
+  * The .nb files are Mathematica notebooks and provide the means to generate 
+    the results from my PhD, or create new sets of results.
+  * The .m files are Mathematica packages, providing function definitions 
+    used in the notebooks - you do not need to edit these directly (in fact, 
+    you don't have to look at them at all if you don't want to - Mathematica 
+    will load them at runtime).
+  * The data.sqlite file is an SQLite database used to store numerical results 
+    generated during the course of writing some papers. To save time 
+    reproducing results, some functions may attempt to look them up in the 
+    database. This functionality can be controlled using the DatabaseLookup 
+    option - see the Network package for more information.
+  * Licensing information is contained in COPYING.

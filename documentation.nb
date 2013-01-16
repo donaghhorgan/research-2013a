@@ -1,0 +1,2267 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 8.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[    103128,       2258]
+NotebookOptionsPosition[     85499,       1760]
+NotebookOutlinePosition[     92269,       1936]
+CellTagsIndexPosition[     91847,       1923]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Package documentation", "Title",
+ CellChangeTimes->{{3.54547462352068*^9, 3.545474650273258*^9}, {
+  3.545483531454236*^9, 3.545483576092832*^9}, {3.54625760633537*^9, 
+  3.546257606479314*^9}, {3.547212418101091*^9, 3.5472124279543943`*^9}, {
+  3.5475300023658257`*^9, 3.547530018599757*^9}, {3.548402781579475*^9, 
+  3.548402785017365*^9}, {3.54910505665374*^9, 3.5491050567960167`*^9}, {
+  3.5644771475116463`*^9, 3.5644771532541847`*^9}}],
+
+Cell["\<\
+This notebook generates help for each function across each package.\
+\>", "Text",
+ CellChangeTimes->{{3.54883679524676*^9, 3.548836870801154*^9}, {
+   3.5488377025406647`*^9, 3.5488377131480703`*^9}, {3.548837776284315*^9, 
+   3.548837797819186*^9}, {3.5488379630182953`*^9, 3.5488379631613092`*^9}, {
+   3.548849570925343*^9, 3.548849598458249*^9}, {3.549105060351294*^9, 
+   3.549105088108034*^9}, {3.564477157833366*^9, 3.5644771792863197`*^9}, {
+   3.5648178061439877`*^9, 3.564817811806932*^9}, 3.566215456127285*^9}],
+
+Cell[CellGroupData[{
+
+Cell["Copyright notice", "Subsection"],
+
+Cell["\<\
+Copyright (C) 2012 Donagh Horgan.
+Email: donaghh@rennes.ucc.ie.
+
+This program is free software : you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See 
+COPYING for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program. If not, see http://www.gnu.org/licenses.\
+\>", "Text",
+ CellChangeTimes->{{3.549805026071344*^9, 3.549805026198921*^9}}]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["Version information", "Subsection"],
+
+Cell["\<\
+27/06/2012
+1.0\
+\>", "Text"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["Changelog", "Subsection"],
+
+Cell["\<\
+Version 1.0: First working version.\
+\>", "Text",
+ CellChangeTimes->{{3.5498050483432837`*^9, 3.549805058422082*^9}, {
+  3.566215469103237*^9, 3.566215473135915*^9}}]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["Set up", "Section",
+ CellChangeTimes->{{3.5453780335135527`*^9, 3.545378038251978*^9}}],
+
+Cell["Clear all symbol values and load function definitions:", "Text",
+ CellChangeTimes->{{3.5488368944558268`*^9, 3.5488369364482307`*^9}, {
+  3.5488369746735487`*^9, 3.548837019296554*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"Unprotect", "[", "\"\<Global`*\>\"", "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"ClearAll", "[", "\"\<Global`*\>\"", "]"}], ";"}]}], "Input",
+ CellChangeTimes->{{3.545377496151711*^9, 3.5453775066078253`*^9}, {
+  3.564311328946862*^9, 3.564311339125745*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"SetDirectory", "[", 
+   RowBox[{"NotebookDirectory", "[", "]"}], "]"}], ";"}], "\n", 
+ RowBox[{"<<", "definitions.m"}]}], "Input",
+ CellChangeTimes->{{3.5516156198882313`*^9, 3.551615619891828*^9}, {
+  3.564310966651301*^9, 3.564310971988237*^9}, {3.564477185883157*^9, 
+  3.5644771861207123`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"GenerateHelp", "[", "package_", "]"}], ":=", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{"If", "[", 
+      RowBox[{
+       RowBox[{"Or", "@@", 
+        RowBox[{"Table", "[", 
+         RowBox[{
+          RowBox[{"!", 
+           RowBox[{"StringFreeQ", "[", 
+            RowBox[{
+             RowBox[{"ToString", "[", "m", "]"}], ",", "\"\<usage\>\""}], 
+            "]"}]}], ",", 
+          RowBox[{"{", 
+           RowBox[{"m", ",", 
+            RowBox[{"Messages", "[", 
+             RowBox[{"Evaluate", "[", "s", "]"}], "]"}]}], "}"}]}], "]"}]}], 
+       ",", 
+       RowBox[{
+        RowBox[{"Print", "[", 
+         RowBox[{"ToString", "[", "s", "]"}], "]"}], ";", 
+        RowBox[{"Information", "[", 
+         RowBox[{
+          RowBox[{"Evaluate", "[", "s", "]"}], ",", 
+          RowBox[{"LongForm", "\[Rule]", "False"}]}], "]"}]}]}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"s", ",", 
+       RowBox[{"ToExpression", "[", 
+        RowBox[{"Names", "[", 
+         RowBox[{"package", "<>", "\"\<*\>\""}], "]"}], "]"}]}], "}"}]}], 
+    "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.56448196692768*^9, 3.5644819817915497`*^9}, {
+  3.564482233953458*^9, 3.564482234256371*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Network", "Section",
+ CellChangeTimes->{{3.5453780335135527`*^9, 3.545378038251978*^9}, {
+  3.564477201559671*^9, 3.56447720735034*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"GenerateHelp", "[", "\"\<Network`\>\"", "]"}], ";"}]], "Input",
+ CellChangeTimes->{{3.5644819960285187`*^9, 3.5644820216164*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData["\<\"FusionCenterProbabilityOfDetection\"\>"], "Print",
+ CellChangeTimes->{{3.564482001552766*^9, 3.564482021746084*^9}, 
+   3.5644821918483133`*^9, 3.564482236327017*^9, 3.566729871774188*^9}],
+
+Cell[BoxData[
+ StyleBox["\<\"FusionCenterProbabilityOfDetection[Pd, n, k] calculates the \
+overall probability of detection for a cooperative network with 1 bit \
+decision fusion.\\nFusionCenterProbabilityOfDetection[Pd, n, k, \[Rho]] \
+calculates the overall probability of detection for a cooperative network \
+with 1 bit decision fusion and correlated decisions.\"\>", "MSG"]], "Print", \
+"PrintUsage",
+ CellChangeTimes->{3.566729872127795*^9},
+ CellTags->"Info3566729871-1208992"],
+
+Cell[BoxData["\<\"FusionCenterProbabilityOfFalseAlarm\"\>"], "Print",
+ CellChangeTimes->{{3.564482001552766*^9, 3.564482021746084*^9}, 
+   3.5644821918483133`*^9, 3.564482236327017*^9, 3.566729872145393*^9}],
+
+Cell[BoxData[
+ StyleBox["\<\"FusionCenterProbabilityOfFalseAlarm[Pf, n, k] calculates the \
+overall probability of false alarm for a cooperative network with 1 bit \
+decision fusion.\\nFusionCenterProbabilityOfFalseAlarm[Pf, n, k, \[Rho]] \
+calculates the overall probability of false alarm for a cooperative network \
+with 1 bit decision fusion and correlated decisions.\"\>", "MSG"]], "Print", \
+"PrintUsage",
+ CellChangeTimes->{3.566729872168901*^9},
+ CellTags->"Info3566729872-1208992"],
+
+Cell[BoxData["\<\"k\"\>"], "Print",
+ CellChangeTimes->{{3.564482001552766*^9, 3.564482021746084*^9}, 
+   3.5644821918483133`*^9, 3.564482236327017*^9, 3.566729872183235*^9}],
+
+Cell[BoxData[
+ StyleBox["\<\"\\\"k[Pf, Pd, n] calculates the optimum fusion rule for a \
+cooperative network with 1 bit decision fusion.\\\\nk[Pf, Pd, n, \[Rho]] \
+calculates the optimum fusion rule for a cooperative network with 1 bit \
+decision fusion and correlated \
+decisions.\\\\nk[{\\!\\(\\*SubscriptBox[\\(P\\), \\(00\\)]\\), \
+\\!\\(\\*SubscriptBox[\\(P\\), \\(01\\)]\\), ...}, \
+{\\!\\(\\*SubscriptBox[\\(P\\), \\(10\\)]\\), \\!\\(\\*SubscriptBox[\\(P\\), \
+\\(11\\)]\\), ...}, n] calculates the optimum fusion rule for a cooperative \
+network with arbitrary decision \
+quantisation.\\\\nk[{\\!\\(\\*SubscriptBox[\\(P\\), \\(00\\)]\\), \
+\\!\\(\\*SubscriptBox[\\(P\\), \\(01\\)]\\), ...}, \
+{\\!\\(\\*SubscriptBox[\\(P\\), \\(10\\)]\\), \\!\\(\\*SubscriptBox[\\(P\\), \
+\\(11\\)]\\), ...}, n, \[Rho]] calculates the optimum fusion rule for a \
+cooperative network with arbitrary decision quantisation and correlated \
+decisions.\\\"\"\>", "MSG"]], "Print", "PrintUsage",
+ CellChangeTimes->{3.566729872389749*^9},
+ CellTags->"Info3566729872-1208992"],
+
+Cell[BoxData["\<\"ProbabilityOfAcquisition\"\>"], "Print",
+ CellChangeTimes->{{3.564482001552766*^9, 3.564482021746084*^9}, 
+   3.5644821918483133`*^9, 3.564482236327017*^9, 3.5667298724107113`*^9}],
+
+Cell[BoxData[
+ StyleBox["\<\"ProbabilityOfAcquisition[M, \[Lambda], n] calculates the \
+probability of acquisition for the given number of samples, M, threshold, \
+\[Lambda], and number of diversity branches, n.\\n\\nThe following diversity \
+reception schemes may be \
+specified:\\n\\nDiversityType\[Rule]\\\"None\\\"\\nDiversityType\[Rule]\\\"\
+MRC\\\"\\nDiversityType\[Rule]\\\"EGC\\\"\\nDiversityType\[Rule]\\\"SC\\\"\\\
+nDiversityType\[Rule]{\\\"SEC\\\", \[Gamma]t} (where \[Gamma]t is the \
+threshold switching value)\\nDiversityType\[Rule]\\\"SLC\\\"\\nDiversityType\
+\[Rule]\\\"SLS\\\"\\n\\nBy default, DiversityType\[Rule]\\\"SLC\\\".\\n\\nA \
+computational method may be specified using the Method option. By default, \
+Method\[Rule]\\\"ApproximateNumerical\\\". For more information, see \
+individual packages.\\n\\nTest statistic compression may be specified using \
+the DecisionBits option. By default, \
+DecisionBits\[Rule]Infinity.\\n\\nAdditionally, the average correlation \
+between nodes may be specified with the CorrelationCoefficient option. By \
+default, CorrelationCoefficient\[Rule]0.\"\>", "MSG"]], "Print", "PrintUsage",
+ 
+ CellChangeTimes->{3.566729872506899*^9},
+ CellTags->"Info3566729872-1208992"],
+
+Cell[BoxData["\<\"ProbabilityOfDetection\"\>"], "Print",
+ CellChangeTimes->{{3.564482001552766*^9, 3.564482021746084*^9}, 
+   3.5644821918483133`*^9, 3.564482236327017*^9, 3.566729872526328*^9}],
+
+Cell[BoxData[
+ StyleBox["\<\"ProbabilityOfDetection[M, \[Gamma], \[Lambda], n] calculates \
+the probability of detection for the given number of samples, M, signal to \
+noise ratio per sample, \[Gamma], threshold, \[Lambda], and number of \
+diversity branches, n.\\n\\nThe following diversity reception schemes may be \
+specified:\\n\\nDiversityType\[Rule]\\\"None\\\"\\nDiversityType\[Rule]\\\"\
+MRC\\\"\\nDiversityType\[Rule]\\\"EGC\\\"\\nDiversityType\[Rule]\\\"SC\\\"\\\
+nDiversityType\[Rule]{\\\"SEC\\\", \[Gamma]t} (where \[Gamma]t is the \
+threshold switching value)\\nDiversityType\[Rule]\\\"SLC\\\"\\nDiversityType\
+\[Rule]\\\"SLS\\\"\\n\\nBy default, DiversityType\[Rule]\\\"SLC\\\".\\n\\nThe \
+following channel types may be specified:\\n\\nChannelType\[Rule]\\\"AWGN\\\"\
+\\nChannelType\[Rule]\\\"Rayleigh\\\"\\nChannelType\[Rule]{\\\"Nakagami\\\", \
+m}\\nChannelType\[Rule]{\\\"Rice\\\", K}\\n\\nBy default, \
+ChannelType\[Rule]\\\"AWGN\\\".\\n\\nA computational method may be specified \
+using the Method option. By default, \
+Method\[Rule]\\\"ApproximateNumerical\\\". For more information, see \
+individual packages.\\n\\nTest statistic compression may be specified using \
+the DecisionBits option. By default, \
+DecisionBits\[Rule]Infinity.\\n\\nAdditionally, the average correlation \
+between nodes may be specified with the CorrelationCoefficient option. By \
+default, CorrelationCoefficient\[Rule]0.\\n\\nFunction timing options may be \
+specified using the Timed option. By default, Timed\[Rule]False, \
+MaxIterations\[Rule]1000 and MaxTime\[Rule]600. If Timed\[Rule]True, then a \
+{Pd, time} list of values will be returned. The Timed option is incompatible \
+with database lookup/caching.\\n\\nDatabase lookup/caching may be enabled \
+with the DatabaseLookup and DatabaseCaching options. For database caching, \
+both the DatabaseLookup and DatabaseCaching options must be set to True. By \
+default, DatabaseLookup\[Rule]False and DatabaseCaching\[Rule]False.\"\>", 
+  "MSG"]], "Print", "PrintUsage",
+ CellChangeTimes->{3.5667298726208572`*^9},
+ CellTags->"Info3566729872-1208992"],
+
+Cell[BoxData["\<\"ProbabilityOfFalseAlarm\"\>"], "Print",
+ CellChangeTimes->{{3.564482001552766*^9, 3.564482021746084*^9}, 
+   3.5644821918483133`*^9, 3.564482236327017*^9, 3.566729872638349*^9}],
+
+Cell[BoxData[
+ StyleBox["\<\"ProbabilityOfFalseAlarm[M, \[Lambda], n] calculates the \
+probability of false alarm for the given number of samples, M, threshold, \
+\[Lambda], and number of diversity branches, n.\\n\\nThe following diversity \
+reception schemes may be \
+specified:\\n\\nDiversityType\[Rule]\\\"None\\\"\\nDiversityType\[Rule]\\\"\
+MRC\\\"\\nDiversityType\[Rule]\\\"EGC\\\"\\nDiversityType\[Rule]\\\"SC\\\"\\\
+nDiversityType\[Rule]{\\\"SEC\\\", \[Gamma]t} (where \[Gamma]t is the \
+threshold switching value)\\nDiversityType\[Rule]\\\"SLC\\\"\\nDiversityType\
+\[Rule]\\\"SLS\\\"\\n\\nBy default, DiversityType\[Rule]\\\"SLC\\\".\\n\\nA \
+computational method may be specified using the Method option. By default, \
+Method\[Rule]\\\"ApproximateNumerical\\\". For more information, see \
+individual packages.\\n\\nTest statistic compression may be specified using \
+the DecisionBits option. By default, \
+DecisionBits\[Rule]Infinity.\\n\\nAdditionally, the average correlation \
+between nodes may be specified with the CorrelationCoefficient option. By \
+default, CorrelationCoefficient\[Rule]0.\"\>", "MSG"]], "Print", "PrintUsage",
+ 
+ CellChangeTimes->{3.5667298727352953`*^9},
+ CellTags->"Info3566729872-1208992"],
+
+Cell[BoxData["\<\"ProbabilityOfMissedDetection\"\>"], "Print",
+ CellChangeTimes->{{3.564482001552766*^9, 3.564482021746084*^9}, 
+   3.5644821918483133`*^9, 3.564482236327017*^9, 3.5667298727552223`*^9}],
+
+Cell[BoxData[
+ StyleBox["\<\"ProbabilityOfMissedDetection[M, \[Gamma], \[Lambda], n] \
+calculates the probability of missed detection for the given number of \
+samples, M, signal to noise ratio per sample, \[Gamma], threshold, \[Lambda], \
+and number of diversity branches, n.\\n\\nThe following diversity reception \
+schemes may be \
+specified:\\n\\nDiversityType\[Rule]\\\"None\\\"\\nDiversityType\[Rule]\\\"\
+MRC\\\"\\nDiversityType\[Rule]\\\"EGC\\\"\\nDiversityType\[Rule]\\\"SC\\\"\\\
+nDiversityType\[Rule]{\\\"SEC\\\", \[Gamma]t} (where \[Gamma]t is the \
+threshold switching value)\\nDiversityType\[Rule]\\\"SLC\\\"\\nDiversityType\
+\[Rule]\\\"SLS\\\"\\n\\nBy default, DiversityType\[Rule]\\\"SLC\\\".\\n\\nThe \
+following channel types may be specified:\\n\\nChannelType\[Rule]\\\"AWGN\\\"\
+\\nChannelType\[Rule]\\\"Rayleigh\\\"\\nChannelType\[Rule]{\\\"Nakagami\\\", \
+m}\\nChannelType\[Rule]{\\\"Rice\\\", K}\\n\\nBy default, \
+ChannelType\[Rule]\\\"AWGN\\\".\\n\\nA computational method may be specified \
+using the Method option. By default, \
+Method\[Rule]\\\"ApproximateNumerical\\\". For more information, see \
+individual packages.\\n\\nTest statistic compression may be specified using \
+the DecisionBits option. By default, \
+DecisionBits\[Rule]Infinity.\\n\\nAdditionally, the average correlation \
+between nodes may be specified with the CorrelationCoefficient option. By \
+default, CorrelationCoefficient\[Rule]0.\\n\\nFunction timing options may be \
+specified using the Timed option. By default, Timed\[Rule]False, \
+MaxIterations\[Rule]1000 and MaxTime\[Rule]600. If Timed\[Rule]True, then a \
+{Pd, time} list of values will be returned. The Timed option is incompatible \
+with database lookup/caching.\\n\\nDatabase lookup/caching may be enabled \
+with the DatabaseLookup and DatabaseCaching options. For database caching, \
+both the DatabaseLookup and DatabaseCaching options must be set to True. By \
+default, DatabaseLookup\[Rule]False and DatabaseCaching\[Rule]False.\"\>", 
+  "MSG"]], "Print", "PrintUsage",
+ CellChangeTimes->{3.566729872850525*^9},
+ CellTags->"Info3566729872-1208992"],
+
+Cell[BoxData["\<\"SampleComplexity\"\>"], "Print",
+ CellChangeTimes->{{3.564482001552766*^9, 3.564482021746084*^9}, 
+   3.5644821918483133`*^9, 3.564482236327017*^9, 3.566729872866376*^9}],
+
+Cell[BoxData[
+ StyleBox["\<\"SampleComplexity[\[Gamma], Pf, Pd, n] calculates the number of \
+samples required for a cooperative network of energy detectors to operate \
+with the specified decision probabilities at the given signal to noise ratio.\
+\\n\\nThe following diversity reception schemes may be \
+specified:\\n\\nDiversityType\[Rule]\\\"None\\\"\\nDiversityType\[Rule]\\\"\
+MRC\\\"\\nDiversityType\[Rule]\\\"EGC\\\"\\nDiversityType\[Rule]\\\"SC\\\"\\\
+nDiversityType\[Rule]{\\\"SEC\\\", \[Gamma]t} (where \[Gamma]t is the \
+threshold switching value)\\nDiversityType\[Rule]\\\"SLC\\\"\\nDiversityType\
+\[Rule]\\\"SLS\\\"\\n\\nBy default, DiversityType\[Rule]\\\"SLC\\\".\\n\\nThe \
+following channel types may be specified:\\n\\nChannelType\[Rule]\\\"AWGN\\\"\
+\\nChannelType\[Rule]\\\"Rayleigh\\\"\\nChannelType\[Rule]{\\\"Nakagami\\\", \
+m}\\nChannelType\[Rule]{\\\"Rice\\\", K}\\n\\nBy default, \
+ChannelType\[Rule]\\\"AWGN\\\".\\n\\nA computational method may be specified \
+using the Method option. By default, \
+Method\[Rule]\\\"ApproximateNumerical\\\". For more information, see \
+individual packages.\\n\\nTest statistic compression may be specified using \
+the DecisionBits option. By default, \
+DecisionBits\[Rule]Infinity.\\n\\nAdditionally, the average correlation \
+between nodes may be specified with the CorrelationCoefficient option. By \
+default, CorrelationCoefficient\[Rule]0.\\n\\nDatabase lookup/caching may be \
+enabled with the DatabaseLookup and DatabaseCaching options. For database \
+caching, both the DatabaseLookup and DatabaseCaching options must be set to \
+True. By default, DatabaseLookup\[Rule]False and DatabaseCaching\[Rule]False.\
+\"\>", "MSG"]], "Print", "PrintUsage",
+ CellChangeTimes->{3.5667298728917093`*^9},
+ CellTags->"Info3566729872-1208992"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["AWGN", "Section",
+ CellChangeTimes->{{3.5453780335135527`*^9, 3.545378038251978*^9}, {
+  3.564477201559671*^9, 3.56447720735034*^9}, {3.5644820433049393`*^9, 
+  3.564482043688128*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"GenerateHelp", "[", "\"\<AWGN`\>\"", "]"}], ";"}]], "Input",
+ CellChangeTimes->{{3.5644819960285187`*^9, 3.564482046493178*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData["\<\"AWGNPDF\"\>"], "Print",
+ CellChangeTimes->{3.564482193118094*^9, 3.564482237561705*^9, 
+  3.566729872939427*^9}],
+
+Cell[BoxData[
+ StyleBox["\<\"AWGNPDF[M, \[Gamma], x] evaluates the probability density \
+function of the recieved energy at a single energy detector operating on an \
+AWGN channel at x.\\nAWGNPDF[M, \[Gamma], x, n] evaluates the probability \
+density function of the recieved energy at the fusion center of a cooperative \
+network operating on an AWGN fading channel at x.\\n\\nThe following methods \
+may be specified:\\n\\nMethod\[Rule]\\\"ExactNumerical\\\"\\nMethod\[Rule]\\\"\
+ApproximateNumerical\\\"\\nMethod\[Rule]\\\"ApproximateNumericalLowSNR\\\"\\n\
+\\nBy default, Method\[Rule]\\\"ApproximateNumerical\\\".\"\>", 
+  "MSG"]], "Print", "PrintUsage",
+ CellChangeTimes->{3.566729873000599*^9},
+ CellTags->"Info3566729872-1208992"],
+
+Cell[BoxData["\<\"AWGNProbabilityOfDetection\"\>"], "Print",
+ CellChangeTimes->{3.564482193118094*^9, 3.564482237561705*^9, 
+  3.5667298730148697`*^9}],
+
+Cell[BoxData[
+ StyleBox["\<\"AWGNProbabilityOfDetection[M, \[Gamma], \[Lambda]] calculates \
+the approximate probability of detection for a single energy detector \
+operating on an AWGN channel.\\nAWGNProbabilityOfDetection[M, \[Gamma], \
+\[Lambda], n] calculates the approximate probability of detection for energy \
+detection with diversity reception in an AWGN channel.\\n\\nThe following \
+methods may be specified:\\n\\nMethod\[Rule]\\\"ExactNumerical\\\"\\nMethod\
+\[Rule]\\\"ApproximateNumerical\\\"\\nMethod\[Rule]\\\"\
+ApproximateNumericalLowSNR\\\"\\n\\nBy default, \
+Method\[Rule]\\\"ApproximateNumerical\\\".\\n\\nThe following diversity \
+reception schemes may be \
+specified:\\n\\nDiversityType\[Rule]\\\"None\\\"\\nDiversityType\[Rule]\\\"\
+MRC\\\"\\nDiversityType\[Rule]\\\"EGC\\\"\\nDiversityType\[Rule]\\\"SC\\\"\\\
+nDiversityType\[Rule]{\\\"SEC\\\", \[Gamma]t} (where \[Gamma]t is the \
+threshold switching value)\\nDiversityType\[Rule]\\\"SLC\\\"\\nDiversityType\
+\[Rule]\\\"SLS\\\"\\n\\nBy default, DiversityType\[Rule]\\\"SLC\\\".\"\>", 
+  "MSG"]], "Print", "PrintUsage",
+ CellChangeTimes->{3.566729873033112*^9},
+ CellTags->"Info3566729873-1208992"],
+
+Cell[BoxData["\<\"AWGNProbabilityOfFalseAlarm\"\>"], "Print",
+ CellChangeTimes->{3.564482193118094*^9, 3.564482237561705*^9, 
+  3.5667298730463257`*^9}],
+
+Cell[BoxData[
+ StyleBox["\<\"AWGNProbabilityOfFalseAlarm[M, \[Lambda]] calculates the \
+probability of false alarm for a single energy detector operating on an AWGN \
+channel.\\nAWGNProbabilityOfFalseAlarm[M, \[Lambda], n] calculates the \
+probability of false alarm for energy detection with diversity reception in \
+an AWGN channel.\\n\\nThe following methods may be specified:\\n\\nMethod\
+\[Rule]\\\"ExactNumerical\\\"\\nMethod\[Rule]\\\"ApproximateNumerical\\\"\\\
+nMethod\[Rule]\\\"ApproximateNumericalLowSNR\\\"\\n\\nBy default, Method\
+\[Rule]\\\"ApproximateNumerical\\\".\\n\\nThe following diversity reception \
+schemes may be \
+specified:\\n\\nDiversityType\[Rule]\\\"None\\\"\\nDiversityType\[Rule]\\\"\
+MRC\\\"\\nDiversityType\[Rule]\\\"EGC\\\"\\nDiversityType\[Rule]\\\"SC\\\"\\\
+nDiversityType\[Rule]{\\\"SEC\\\", \[Gamma]t} (where \[Gamma]t is the \
+threshold switching value)\\nDiversityType\[Rule]\\\"SLC\\\"\\nDiversityType\
+\[Rule]\\\"SLS\\\"\\n\\nBy default, DiversityType\[Rule]\\\"SLC\\\".\"\>", 
+  "MSG"]], "Print", "PrintUsage",
+ CellChangeTimes->{3.5667298731336517`*^9},
+ CellTags->"Info3566729873-1208992"],
+
+Cell[BoxData["\<\"AWGNSampleComplexity\"\>"], "Print",
+ CellChangeTimes->{3.564482193118094*^9, 3.564482237561705*^9, 
+  3.566729873149637*^9}],
+
+Cell[BoxData[
+ StyleBox["\<\"AWGNSampleComplexity[\[Gamma], Pf, Pd, n] calculates the \
+number of samples required for the specified decision probabilities and \
+signal to noise ratio in an AWGN channel.\\n\\nThe following methods may be \
+specified:\\n\\nMethod\[Rule]\\\"ExactNumerical\\\"\\nMethod\[Rule]\\\"\
+ApproximateNumerical\\\"\\nMethod\[Rule]\\\"ApproximateNumericalLowSNR\\\"\\n\
+\\nBy default, Method\[Rule]\\\"ApproximateNumerical\\\".\\n\\nThe following \
+diversity reception schemes may be \
+specified:\\n\\nDiversityType\[Rule]\\\"None\\\"\\nDiversityType\[Rule]\\\"\
+MRC\\\"\\nDiversityType\[Rule]\\\"EGC\\\"\\nDiversityType\[Rule]\\\"SC\\\"\\\
+nDiversityType\[Rule]{\\\"SEC\\\", \[Gamma]t} (where \[Gamma]t is the \
+threshold switching value)\\nDiversityType\[Rule]\\\"SLC\\\"\\nDiversityType\
+\[Rule]\\\"SLS\\\"\\n\\nBy default, DiversityType\[Rule]\\\"SLC\\\".\"\>", 
+  "MSG"]], "Print", "PrintUsage",
+ CellChangeTimes->{3.5667298732261066`*^9},
+ CellTags->"Info3566729873-1208992"],
+
+Cell[BoxData["\<\"\[Lambda]\"\>"], "Print",
+ CellChangeTimes->{3.564482193118094*^9, 3.564482237561705*^9, 
+  3.5667298732402*^9}],
+
+Cell[BoxData[
+ StyleBox["\<\"\[Lambda][M, Pf] calculates a threshold suitable for use in \
+the calculation of the decision probabilities for a single energy \
+detector.\\n\[Lambda][M, Pf, n] calculates a threshold suitable for use in \
+the calculation of the decision probabilities for energy detection with \
+diversity reception.\\n\\nThe following methods may be specified:\\n\\nMethod\
+\[Rule]\\\"Exact\\\"\\nMethod\[Rule]\\\"Approximate\\\"\\n\\nBy default, \
+Method\[Rule]\\\"Exact\\\".\\n\\nThe following diversity reception schemes \
+may be specified:\\n\\nDiversityType\[Rule]\\\"None\\\"\\nDiversityType\[Rule]\
+\\\"MRC\\\"\\nDiversityType\[Rule]\\\"EGC\\\"\\nDiversityType\[Rule]\\\"SC\\\"\
+\\nDiversityType\[Rule]{\\\"SEC\\\", \[Gamma]t} (where \[Gamma]t is the \
+threshold switching value)\\nDiversityType\[Rule]\\\"SLC\\\"\\nDiversityType\
+\[Rule]\\\"SLS\\\"\\n\\nBy default, DiversityType\[Rule]\\\"SLC\\\".\"\>", 
+  "MSG"]], "Print", "PrintUsage",
+ CellChangeTimes->{3.566729873322192*^9},
+ CellTags->"Info3566729873-1208992"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Rayleigh", "Section",
+ CellChangeTimes->{{3.5453780335135527`*^9, 3.545378038251978*^9}, {
+  3.564477201559671*^9, 3.56447720735034*^9}, {3.5644820433049393`*^9, 
+  3.564482073769616*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"GenerateHelp", "[", "\"\<Rayleigh`\>\"", "]"}], ";"}]], "Input",
+ CellChangeTimes->{{3.5644819960285187`*^9, 3.564482069006949*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData["\<\"RayleighPDF\"\>"], "Print",
+ CellChangeTimes->{3.564482194060416*^9, 3.564482238287404*^9, 
+  3.5667298733537073`*^9}],
+
+Cell[BoxData[
+ StyleBox["\<\"RayleighPDF[\[Gamma], x] evaluates the probability density \
+function of the instantaneous signal to noise ratio at a single energy \
+detector operating on a Rayleigh fading channel at x.\\nRayleighPDF[\[Gamma], \
+x, n] evaluates the probability density function of the average instantaneous \
+signal to noise ratio for energy detection with diversity reception in a \
+Rayleigh fading channel.\\n\\nThe following methods may be \
+specified:\\n\\nMethod\[Rule]\\\"Exact\\\"\\nMethod\[Rule]\\\"Approximate\\\"\
+\\n\\nBy default, Method\[Rule]\\\"Exact\\\".\\n\\nThe following diversity \
+reception schemes may be \
+specified:\\n\\nDiversityType\[Rule]\\\"None\\\"\\nDiversityType\[Rule]\\\"\
+MRC\\\"\\nDiversityType\[Rule]\\\"EGC\\\"\\nDiversityType\[Rule]\\\"SC\\\"\\\
+nDiversityType\[Rule]{\\\"SEC\\\", \[Gamma]t} (where \[Gamma]t is the \
+threshold switching value)\\nDiversityType\[Rule]\\\"SLC\\\"\\nDiversityType\
+\[Rule]\\\"SLS\\\"\\n\\nBy default, DiversityType\[Rule]\\\"SLC\\\".\"\>", 
+  "MSG"]], "Print", "PrintUsage",
+ CellChangeTimes->{3.566729873497703*^9},
+ CellTags->"Info3566729873-1208992"],
+
+Cell[BoxData["\<\"RayleighProbabilityOfDetection\"\>"], "Print",
+ CellChangeTimes->{3.564482194060416*^9, 3.564482238287404*^9, 
+  3.56672987351448*^9}],
+
+Cell[BoxData[
+ StyleBox["\<\"RayleighProbabilityOfDetection[M, \[Gamma], \[Lambda]] \
+calculates the probability of detection for a single energy detector \
+operating on a Rayleigh fading channel.\\nRayleighProbabilityOfDetection[M, \
+\[Gamma], \[Lambda], n] calculates the probability of detection for energy \
+detection with diversity reception in a Rayleigh fading channel.\\n\\nThe \
+following methods may be \
+specified:\\n\\nMethod\[Rule]\\\"ExactNumerical\\\"\\nMethod\[Rule]\\\"\
+ExactAnnamalai\\\"\\nMethod\[Rule]\\\"ExactDigham\\\"\\nMethod\[Rule]\\\"\
+ExactHerath\\\"\\nMethod\[Rule]\\\"ExactSun\\\"\\nMethod\[Rule]\\\"\
+ApproximateNumerical\\\"\\nMethod\[Rule]\\\"ApproximateNumericalLowSNR\\\"\\\
+nMethod\[Rule]\\\"ApproximateIntegerMN\\\"\\nMethod\[Rule]\\\"\
+ApproximateAsymptotic\\\"\\nMethod\[Rule]{\\\"ApproximateSwitchedMN\\\"n} \
+(where mn is the switching \
+point)\\nMethod\[Rule]\\\"ApproximateSmallPf\\\"\\nMethod\[Rule]\\\"\
+ApproximateLargeSNR\\\"\\n\\nBy default, \
+Method\[Rule]\\\"ApproximateNumerical\\\".\\n\\nThe following diversity \
+reception schemes may be \
+specified:\\n\\nDiversityType\[Rule]\\\"None\\\"\\nDiversityType\[Rule]\\\"\
+MRC\\\"\\nDiversityType\[Rule]\\\"EGC\\\"\\nDiversityType\[Rule]\\\"SC\\\"\\\
+nDiversityType\[Rule]{\\\"SEC\\\", \[Gamma]t} (where \[Gamma]t is the \
+threshold switching value)\\nDiversityType\[Rule]\\\"SLC\\\"\\nDiversityType\
+\[Rule]\\\"SLS\\\"\\n\\nBy default, \
+DiversityType\[Rule]\\\"SLC\\\".\\n\\nFunction timing options may be \
+specified using the Timed option. By default, Timed\[Rule]False, \
+MaxIterations\[Rule]1000 and MaxTime\[Rule]600. If Timed\[Rule]True, then a \
+{Pd, time} list of values will be returned. The Timed option is incompatible \
+with database lookup/caching.\"\>", "MSG"]], "Print", "PrintUsage",
+ CellChangeTimes->{3.566729873596224*^9},
+ CellTags->"Info3566729873-1208992"],
+
+Cell[BoxData["\<\"RayleighSampleComplexity\"\>"], "Print",
+ CellChangeTimes->{3.564482194060416*^9, 3.564482238287404*^9, 
+  3.566729873616611*^9}],
+
+Cell[BoxData[
+ StyleBox["\<\"RayleighSampleComplexity[\[Gamma], Pf, Pd, n] calculates the \
+number of samples required for the specified decision probabilities and \
+signal to noise ratio in a Rayleigh channel.\\n\\nThe following methods may \
+be specified:\\n\\nMethod\[Rule]\\\"ExactNumerical\\\"\\nMethod\[Rule]\\\"\
+ApproximateNumerical\\\"\\nMethod\[Rule]\\\"ApproximateNumericalLowSNR\\\"\\\
+nMethod\[Rule]\\\"ApproximateAsymptotic\\\"\\nMethod\[Rule]\\\"\
+ApproximateAsymptoticUpperBound\\\"\\nMethod\[Rule]\\\"\
+ApproximateAsymptoticLowerBound\\\"\\n\\nBy default, \
+Method\[Rule]\\\"ApproximateNumerical\\\".\\n\\nThe following diversity \
+reception schemes may be \
+specified:\\n\\nDiversityType\[Rule]\\\"None\\\"\\nDiversityType\[Rule]\\\"\
+MRC\\\"\\nDiversityType\[Rule]\\\"EGC\\\"\\nDiversityType\[Rule]\\\"SC\\\"\\\
+nDiversityType\[Rule]{\\\"SEC\\\", \[Gamma]t} (where \[Gamma]t is the \
+threshold switching value)\\nDiversityType\[Rule]\\\"SLC\\\"\\nDiversityType\
+\[Rule]\\\"SLS\\\"\\n\\nBy default, DiversityType\[Rule]\\\"SLC\\\".\"\>", 
+  "MSG"]], "Print", "PrintUsage",
+ CellChangeTimes->{3.566729873731864*^9},
+ CellTags->"Info3566729873-1208992"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Nakagami", "Section",
+ CellChangeTimes->{{3.5453780335135527`*^9, 3.545378038251978*^9}, {
+  3.564477201559671*^9, 3.56447720735034*^9}, {3.5644820433049393`*^9, 
+  3.564482043688128*^9}, {3.5644820756246443`*^9, 3.564482076536097*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"GenerateHelp", "[", "\"\<Nakagami`\>\"", "]"}], ";"}]], "Input",
+ CellChangeTimes->{{3.5644819960285187`*^9, 3.564482046493178*^9}, {
+  3.564482078766407*^9, 3.56448207977317*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData["\<\"AnnamalaiNakagamiProbabilityOfDetection\"\>"], "Print",
+ CellChangeTimes->{3.564482194539772*^9, 3.564482238753443*^9, 
+  3.566729873762969*^9}],
+
+Cell[BoxData[
+ StyleBox["\<\"AnnamalaiNakagamiProbabilityOfDetection[M, \[Gamma], \
+\[Lambda], m] calculates the probability of detection for a single energy \
+detector operating in a Nakagami-m fading channel using the Annamalai method.\
+\\nAnnamalaiNakagamiProbabilityOfDetection[M, \[Gamma], \[Lambda], m, n] \
+calculates the probability of detection for energy detection with diversity \
+reception in a Nakagami-m fading channel using the Annamalai method.\\n\\nThe \
+following diversity reception schemes may be specified:\\n\\nDiversityType\
+\[Rule]\\\"None\\\"\\nDiversityType\[Rule]\\\"MRC\\\"\\nDiversityType\[Rule]\\\
+\"EGC\\\"\\nDiversityType\[Rule]\\\"SC\\\"\\nDiversityType\[Rule]{\\\"SEC\\\",\
+ \[Gamma]t} (where \[Gamma]t is the threshold switching \
+value)\\nDiversityType\[Rule]\\\"SLC\\\"\\nDiversityType\[Rule]\\\"SLS\\\"\\n\
+\\nBy default, DiversityType\[Rule]\\\"SLC\\\".\\n\\nFunction timing options \
+may be specified using the Timed option. By default, Timed\[Rule]Timed, \
+MaxIterations\[Rule]MaxIterations and MaxTime\[Rule]MaxTime. If \
+Timed\[Rule]True, then a {Pd, time} list of values will be returned. The \
+Timed option is incompatible with database lookup/caching.\"\>", 
+  "MSG"]], "Print", "PrintUsage",
+ CellChangeTimes->{3.566729873826908*^9},
+ CellTags->"Info3566729873-1208992"],
+
+Cell[BoxData["\<\"AsymptoticErrorNakagami\"\>"], "Print",
+ CellChangeTimes->{3.564482194539772*^9, 3.564482238753443*^9, 
+  3.566729873844739*^9}],
+
+Cell[BoxData[
+ StyleBox["\<\"AsymptoticErrorNakagami[Pf, m n] gives the upper bound for the \
+error of the asymptotic method for the specified parameters.\"\>", 
+  "MSG"]], "Print", "PrintUsage",
+ CellChangeTimes->{3.566729873920858*^9},
+ CellTags->"Info3566729873-1208992"],
+
+Cell[BoxData["\<\"AsymptoticNakagamiProbabilityOfDetection\"\>"], "Print",
+ CellChangeTimes->{3.564482194539772*^9, 3.564482238753443*^9, 
+  3.566729873937312*^9}],
+
+Cell[BoxData[
+ StyleBox["\<\"AsymptoticNakagamiProbabilityOfDetection[M, \[Gamma], \
+\[Lambda], m] calculates the probability of detection for a single energy \
+detector operating in a Nakagami-m fading channel using the Asymptotic \
+method.\\nAsymptoticNakagamiProbabilityOfDetection[M, \[Gamma], \[Lambda], m, \
+n] calculates the probability of detection for energy detection with \
+diversity reception in a Nakagami-m fading channel using the Asymptotic \
+method.\\n\\nThe following diversity reception schemes may be \
+specified:\\n\\nDiversityType\[Rule]\\\"None\\\"\\nDiversityType\[Rule]\\\"\
+MRC\\\"\\nDiversityType\[Rule]\\\"EGC\\\"\\nDiversityType\[Rule]\\\"SC\\\"\\\
+nDiversityType\[Rule]{\\\"SEC\\\", \[Gamma]t} (where \[Gamma]t is the \
+threshold switching value)\\nDiversityType\[Rule]\\\"SLC\\\"\\nDiversityType\
+\[Rule]\\\"SLS\\\"\\n\\nBy default, \
+DiversityType\[Rule]\\\"SLC\\\".\\n\\nFunction timing options may be \
+specified using the Timed option. By default, Timed\[Rule]Timed, \
+MaxIterations\[Rule]MaxIterations and MaxTime\[Rule]MaxTime. If \
+Timed\[Rule]True, then a {Pd, time} list of values will be returned. The \
+Timed option is incompatible with database lookup/caching.\"\>", 
+  "MSG"]], "Print", "PrintUsage",
+ CellChangeTimes->{3.566729874015193*^9},
+ CellTags->"Info3566729873-1208992"],
+
+Cell[BoxData["\<\"DighamNakagamiProbabilityOfDetection\"\>"], "Print",
+ CellChangeTimes->{3.564482194539772*^9, 3.564482238753443*^9, 
+  3.56672987403016*^9}],
+
+Cell[BoxData[
+ StyleBox["\<\"DighamNakagamiProbabilityOfDetection[M, \[Gamma], \[Lambda], \
+m] calculates the probability of detection for a single energy detector \
+operating in a Nakagami-m fading channel using the Digham \
+method.\\nDighamNakagamiProbabilityOfDetection[M, \[Gamma], \[Lambda], m, n] \
+calculates the probability of detection for energy detection with diversity \
+reception in a Nakagami-m fading channel using the Digham method.\\n\\nThe \
+following diversity reception schemes may be specified:\\n\\nDiversityType\
+\[Rule]\\\"None\\\"\\nDiversityType\[Rule]\\\"MRC\\\"\\nDiversityType\[Rule]\\\
+\"EGC\\\"\\nDiversityType\[Rule]\\\"SC\\\"\\nDiversityType\[Rule]{\\\"SEC\\\",\
+ \[Gamma]t} (where \[Gamma]t is the threshold switching \
+value)\\nDiversityType\[Rule]\\\"SLC\\\"\\nDiversityType\[Rule]\\\"SLS\\\"\\n\
+\\nBy default, DiversityType\[Rule]\\\"SLC\\\".\\n\\nFunction timing options \
+may be specified using the Timed option. By default, Timed\[Rule]Timed, \
+MaxIterations\[Rule]MaxIterations and MaxTime\[Rule]MaxTime. If \
+Timed\[Rule]True, then a {Pd, time} list of values will be returned. The \
+Timed option is incompatible with database lookup/caching.\"\>", 
+  "MSG"]], "Print", "PrintUsage",
+ CellChangeTimes->{3.566729874056452*^9},
+ CellTags->"Info3566729874-1208992"],
+
+Cell[BoxData["\<\"HerathNakagamiProbabilityOfDetection\"\>"], "Print",
+ CellChangeTimes->{3.564482194539772*^9, 3.564482238753443*^9, 
+  3.5667298740707493`*^9}],
+
+Cell[BoxData[
+ StyleBox["\<\"HerathNakagamiProbabilityOfDetection[M, \[Gamma], \[Lambda], \
+m] calculates the probability of detection for a single energy detector \
+operating in a Nakagami-m fading channel using the Herath \
+method.\\nHerathNakagamiProbabilityOfDetection[M, \[Gamma], \[Lambda], m, n] \
+calculates the probability of detection for energy detection with diversity \
+reception in a Nakagami-m fading channel using the Herath method.\\n\\nThe \
+following diversity reception schemes may be specified:\\n\\nDiversityType\
+\[Rule]\\\"None\\\"\\nDiversityType\[Rule]\\\"MRC\\\"\\nDiversityType\[Rule]\\\
+\"EGC\\\"\\nDiversityType\[Rule]\\\"SC\\\"\\nDiversityType\[Rule]{\\\"SEC\\\",\
+ \[Gamma]t} (where \[Gamma]t is the threshold switching \
+value)\\nDiversityType\[Rule]\\\"SLC\\\"\\nDiversityType\[Rule]\\\"SLS\\\"\\n\
+\\nBy default, DiversityType\[Rule]\\\"SLC\\\".\\n\\nFunction timing options \
+may be specified using the Timed option. By default, Timed\[Rule]Timed, \
+MaxIterations\[Rule]MaxIterations and MaxTime\[Rule]MaxTime. If \
+Timed\[Rule]True, then a {Pd, time} list of values will be returned. The \
+Timed option is incompatible with database lookup/caching.\"\>", 
+  "MSG"]], "Print", "PrintUsage",
+ CellChangeTimes->{3.566729874151689*^9},
+ CellTags->"Info3566729874-1208992"],
+
+Cell[BoxData["\<\"IntegerMNNakagamiProbabilityOfDetection\"\>"], "Print",
+ CellChangeTimes->{3.564482194539772*^9, 3.564482238753443*^9, 
+  3.566729874165992*^9}],
+
+Cell[BoxData[
+ StyleBox["\<\"IntegerMNNakagamiProbabilityOfDetection[M, \[Gamma], \
+\[Lambda], m] calculates the probability of detection for a single energy \
+detector operating in a Nakagami-m fading channel using the IntegerMN method.\
+\\nIntegerMNNakagamiProbabilityOfDetection[M, \[Gamma], \[Lambda], m, n] \
+calculates the probability of detection for energy detection with diversity \
+reception in a Nakagami-m fading channel using the IntegerMN method.\\n\\nThe \
+following diversity reception schemes may be specified:\\n\\nDiversityType\
+\[Rule]\\\"None\\\"\\nDiversityType\[Rule]\\\"MRC\\\"\\nDiversityType\[Rule]\\\
+\"EGC\\\"\\nDiversityType\[Rule]\\\"SC\\\"\\nDiversityType\[Rule]{\\\"SEC\\\",\
+ \[Gamma]t} (where \[Gamma]t is the threshold switching \
+value)\\nDiversityType\[Rule]\\\"SLC\\\"\\nDiversityType\[Rule]\\\"SLS\\\"\\n\
+\\nBy default, DiversityType\[Rule]\\\"SLC\\\".\\n\\nFunction timing options \
+may be specified using the Timed option. By default, Timed\[Rule]Timed, \
+MaxIterations\[Rule]MaxIterations and MaxTime\[Rule]MaxTime. If \
+Timed\[Rule]True, then a {Pd, time} list of values will be returned. The \
+Timed option is incompatible with database lookup/caching.\"\>", 
+  "MSG"]], "Print", "PrintUsage",
+ CellChangeTimes->{3.56672987423917*^9},
+ CellTags->"Info3566729874-1208992"],
+
+Cell[BoxData["\<\"LargeSNRNakagamiProbabilityOfDetection\"\>"], "Print",
+ CellChangeTimes->{3.564482194539772*^9, 3.564482238753443*^9, 
+  3.566729874257717*^9}],
+
+Cell[BoxData[
+ StyleBox["\<\"LargeSNRNakagamiProbabilityOfDetection[M, \[Gamma], \[Lambda], \
+m] calculates the probability of detection for a single energy detector \
+operating in a Nakagami-m fading channel using the LargeSNR \
+method.\\nLargeSNRNakagamiProbabilityOfDetection[M, \[Gamma], \[Lambda], m, \
+n] calculates the probability of detection for energy detection with \
+diversity reception in a Nakagami-m fading channel using the LargeSNR method.\
+\\n\\nThe following diversity reception schemes may be \
+specified:\\n\\nDiversityType\[Rule]\\\"None\\\"\\nDiversityType\[Rule]\\\"\
+MRC\\\"\\nDiversityType\[Rule]\\\"EGC\\\"\\nDiversityType\[Rule]\\\"SC\\\"\\\
+nDiversityType\[Rule]{\\\"SEC\\\", \[Gamma]t} (where \[Gamma]t is the \
+threshold switching value)\\nDiversityType\[Rule]\\\"SLC\\\"\\nDiversityType\
+\[Rule]\\\"SLS\\\"\\n\\nBy default, \
+DiversityType\[Rule]\\\"SLC\\\".\\n\\nFunction timing options may be \
+specified using the Timed option. By default, Timed\[Rule]Timed, \
+MaxIterations\[Rule]MaxIterations and MaxTime\[Rule]MaxTime. If \
+Timed\[Rule]True, then a {Pd, time} list of values will be returned. The \
+Timed option is incompatible with database lookup/caching.\"\>", 
+  "MSG"]], "Print", "PrintUsage",
+ CellChangeTimes->{3.566729874281385*^9},
+ CellTags->"Info3566729874-1208992"],
+
+Cell[BoxData["\<\"LopezBenitezNakagamiProbabilityOfDetection\"\>"], "Print",
+ CellChangeTimes->{3.564482194539772*^9, 3.564482238753443*^9, 
+  3.566729874295298*^9}],
+
+Cell[BoxData[
+ StyleBox["\<\"LopezBenitezNakagamiProbabilityOfDetection[M, \[Gamma], \
+\[Lambda], m] calculates the probability of detection for a single energy \
+detector operating in a Nakagami-m fading channel using the LopezBenitez \
+method.\\nLopezBenitezNakagamiProbabilityOfDetection[M, \[Gamma], \[Lambda], \
+m, n] calculates the probability of detection for energy detection with \
+diversity reception in a Nakagami-m fading channel using the LopezBenitez \
+method.\\n\\nThe following diversity reception schemes may be \
+specified:\\n\\nDiversityType\[Rule]\\\"None\\\"\\nDiversityType\[Rule]\\\"\
+MRC\\\"\\nDiversityType\[Rule]\\\"EGC\\\"\\nDiversityType\[Rule]\\\"SC\\\"\\\
+nDiversityType\[Rule]{\\\"SEC\\\", \[Gamma]t} (where \[Gamma]t is the \
+threshold switching value)\\nDiversityType\[Rule]\\\"SLC\\\"\\nDiversityType\
+\[Rule]\\\"SLS\\\"\\n\\nBy default, \
+DiversityType\[Rule]\\\"SLC\\\".\\n\\nFunction timing options may be \
+specified using the Timed option. By default, Timed\[Rule]Timed, \
+MaxIterations\[Rule]MaxIterations and MaxTime\[Rule]MaxTime. If \
+Timed\[Rule]True, then a {Pd, time} list of values will be returned. The \
+Timed option is incompatible with database lookup/caching.\"\>", 
+  "MSG"]], "Print", "PrintUsage",
+ CellChangeTimes->{3.566729874374226*^9},
+ CellTags->"Info3566729874-1208992"],
+
+Cell[BoxData["\<\"LowSNRAssumptionErrorNakagami\"\>"], "Print",
+ CellChangeTimes->{3.564482194539772*^9, 3.564482238753443*^9, 
+  3.5667298743908443`*^9}],
+
+Cell[BoxData[
+ StyleBox["\<\"LowSNRAssumptionErrorNakagami[M, \[Gamma], \[Lambda], m, n] \
+calculates the upper bound for the low SNR approximation error.\\n\\nThe \
+following diversity reception schemes may be specified:\\n\\nDiversityType\
+\[Rule]\\\"None\\\"\\nDiversityType\[Rule]\\\"MRC\\\"\\nDiversityType\[Rule]\\\
+\"EGC\\\"\\nDiversityType\[Rule]\\\"SC\\\"\\nDiversityType\[Rule]{\\\"SEC\\\",\
+ \[Gamma]t} (where \[Gamma]t is the threshold switching \
+value)\\nDiversityType\[Rule]\\\"SLC\\\"\\nDiversityType\[Rule]\\\"SLS\\\"\\n\
+\\nBy default, DiversityType\[Rule]\\\"SLC\\\".\"\>", "MSG"]], "Print", \
+"PrintUsage",
+ CellChangeTimes->{3.566729874464252*^9},
+ CellTags->"Info3566729874-1208992"],
+
+Cell[BoxData["\<\"NakagamiEGCPDFApproximationError\"\>"], "Print",
+ CellChangeTimes->{3.564482194539772*^9, 3.564482238753443*^9, 
+  3.5667298744776278`*^9}],
+
+Cell[BoxData[
+ StyleBox["\<\"LowSNRAssumptionErrorNakagami[M, \[Lambda], n] calculates the \
+upper bound for the low SNR approximation error.\\n\\nThe following diversity \
+reception schemes may be \
+specified:\\n\\nDiversityType\[Rule]\\\"None\\\"\\nDiversityType\[Rule]\\\"\
+MRC\\\"\\nDiversityType\[Rule]\\\"EGC\\\"\\nDiversityType\[Rule]\\\"SC\\\"\\\
+nDiversityType\[Rule]{\\\"SEC\\\", \[Gamma]t} (where \[Gamma]t is the \
+threshold switching value)\\nDiversityType\[Rule]\\\"SLC\\\"\\nDiversityType\
+\[Rule]\\\"SLS\\\"\\n\\nBy default, DiversityType\[Rule]\\\"SLC\\\".\"\>", 
+  "MSG"]], "Print", "PrintUsage",
+ CellChangeTimes->{3.566729874503981*^9},
+ CellTags->"Info3566729874-1208992"],
+
+Cell[BoxData["\<\"NakagamiLimit\"\>"], "Print",
+ CellChangeTimes->{3.564482194539772*^9, 3.564482238753443*^9, 
+  3.5667298745181828`*^9}],
+
+Cell[BoxData[
+ StyleBox["\<\"NakagamiLimit[M, \[Gamma], \[Lambda], m] calculates the \
+truncation point for use in the specified method for a single energy detector \
+operating on a Nakagami-m channel.\\nNakagamiLimit[M, \[Gamma], \[Lambda], m, \
+n] calculates the truncation point for use in the specified method for energy \
+detection with diversity reception in a Nakagami-m channel.\\n\\nThe \
+following methods may be \
+specified:\\n\\nMethod\[Rule]\\\"ExactNumerical\\\"\\nMethod\[Rule]\\\"\
+ExactAnnamalai\\\"\\nMethod\[Rule]\\\"ApproximateNumerical\\\"\\nMethod\[Rule]\
+\\\"ApproximateNumericalLowSNR\\\"\\nMethod\[Rule]\\\"ApproximateIntegerKN\\\"\
+\\nMethod\[Rule]\\\"ApproximateAsymptotic\\\"\\n\\nBy default, \
+Method\[Rule]\\\"ExactAnnamalai\\\".\\n\\nThe following diversity reception \
+schemes may be \
+specified:\\n\\nDiversityType\[Rule]\\\"None\\\"\\nDiversityType\[Rule]\\\"\
+MRC\\\"\\nDiversityType\[Rule]\\\"EGC\\\"\\nDiversityType\[Rule]\\\"SC\\\"\\\
+nDiversityType\[Rule]{\\\"SEC\\\", \[Gamma]t} (where \[Gamma]t is the \
+threshold switching value)\\nDiversityType\[Rule]\\\"SLC\\\"\\nDiversityType\
+\[Rule]\\\"SLS\\\"\\n\\nBy default, DiversityType\[Rule]\\\"SLC\\\".\"\>", 
+  "MSG"]], "Print", "PrintUsage",
+ CellChangeTimes->{3.566729874540895*^9},
+ CellTags->"Info3566729874-1208992"],
+
+Cell[BoxData["\<\"NakagamiPDF\"\>"], "Print",
+ CellChangeTimes->{3.564482194539772*^9, 3.564482238753443*^9, 
+  3.566729874557411*^9}],
+
+Cell[BoxData[
+ StyleBox["\<\"NakagamiPDF[\[Gamma], m, x] evaluates the probability density \
+function of the instantaneous signal to noise ratio at a single energy \
+detector operating on a Nakagami-m fading channel at \
+x.\\nNakagamiPDF[\[Gamma], m, x, n] evaluates the probability density \
+function of the average instantaneous signal to noise ratio for energy \
+detection with diversity reception in a Nakagami-m fading channel.\\n\\nThe \
+following methods may be specified:\\n\\nMethod\[Rule]\\\"Exact\\\"\\nMethod\
+\[Rule]\\\"Approximate\\\"\\n\\nBy default, \
+Method\[Rule]\\\"Exact\\\".\\n\\nThe following diversity reception schemes \
+may be specified:\\n\\nDiversityType\[Rule]\\\"None\\\"\\nDiversityType\[Rule]\
+\\\"MRC\\\"\\nDiversityType\[Rule]\\\"EGC\\\"\\nDiversityType\[Rule]\\\"SC\\\"\
+\\nDiversityType\[Rule]{\\\"SEC\\\", \[Gamma]t} (where \[Gamma]t is the \
+threshold switching value)\\nDiversityType\[Rule]\\\"SLC\\\"\\nDiversityType\
+\[Rule]\\\"SLS\\\"\\n\\nBy default, DiversityType\[Rule]\\\"SLC\\\".\"\>", 
+  "MSG"]], "Print", "PrintUsage",
+ CellChangeTimes->{3.5667298745757103`*^9},
+ CellTags->"Info3566729874-1208992"],
+
+Cell[BoxData["\<\"NakagamiProbabilityOfDetection\"\>"], "Print",
+ CellChangeTimes->{3.564482194539772*^9, 3.564482238753443*^9, 
+  3.5667298745897837`*^9}],
+
+Cell[BoxData[
+ StyleBox["\<\"NakagamiProbabilityOfDetection[M, \[Gamma], \[Lambda], m] \
+calculates the probability of detection for a single energy detector \
+operating on a Nakagami-m fading channel.\\nNakagamiProbabilityOfDetection[M, \
+\[Gamma], \[Lambda], m, n] calculates the probability of detection for energy \
+detection with diversity reception in a Nakagami-m fading channel.\\n\\nThe \
+following methods may be \
+specified:\\n\\nMethod\[Rule]\\\"ExactNumerical\\\"\\nMethod\[Rule]\\\"\
+ExactAnnamalai\\\"\\nMethod\[Rule]\\\"ExactDigham\\\"\\nMethod\[Rule]\\\"\
+ExactHerath\\\"\\nMethod\[Rule]\\\"ExactSun\\\"\\nMethod\[Rule]\\\"\
+ApproximateNumerical\\\"\\nMethod\[Rule]\\\"ApproximateNumericalLowSNR\\\"\\\
+nMethod\[Rule]\\\"ApproximateIntegerMN\\\"\\nMethod\[Rule]\\\"\
+ApproximateAsymptotic\\\"\\nMethod\[Rule]{\\\"ApproximateSwitchedMN\\\", mn} \
+(where mn is the switching \
+point)\\nMethod\[Rule]\\\"ApproximateSmallPf\\\"\\nMethod\[Rule]\\\"\
+ApproximateLargeSNR\\\"\\n\\nBy default, \
+Method\[Rule]\\\"ApproximateNumerical\\\".\\n\\nThe following diversity \
+reception schemes may be \
+specified:\\n\\nDiversityType\[Rule]\\\"None\\\"\\nDiversityType\[Rule]\\\"\
+MRC\\\"\\nDiversityType\[Rule]\\\"EGC\\\"\\nDiversityType\[Rule]\\\"SC\\\"\\\
+nDiversityType\[Rule]{\\\"SEC\\\", \[Gamma]t} (where \[Gamma]t is the \
+threshold switching value)\\nDiversityType\[Rule]\\\"SLC\\\"\\nDiversityType\
+\[Rule]\\\"SLS\\\"\\n\\nBy default, \
+DiversityType\[Rule]\\\"SLC\\\".\\n\\nFunction timing options may be \
+specified using the Timed option. By default, Timed\[Rule]False, \
+MaxIterations\[Rule]1000 and MaxTime\[Rule]600. If Timed\[Rule]True, then a \
+{Pd, time} list of values will be returned. The Timed option is incompatible \
+with database lookup/caching.\"\>", "MSG"]], "Print", "PrintUsage",
+ CellChangeTimes->{3.566729874611815*^9},
+ CellTags->"Info3566729874-1208992"],
+
+Cell[BoxData["\<\"NakagamiSampleComplexity\"\>"], "Print",
+ CellChangeTimes->{3.564482194539772*^9, 3.564482238753443*^9, 
+  3.56672987462689*^9}],
+
+Cell[BoxData[
+ StyleBox["\<\"NakagamiSampleComplexity[\[Gamma], Pf, Pd, m, n] calculates \
+the number of samples required for the specified decision probabilities and \
+signal to noise ratio in a Nakagami-m channel.\\n\\nThe following methods may \
+be specified:\\n\\nMethod\[Rule]\\\"ExactNumerical\\\"\\nMethod\[Rule]\\\"\
+ApproximateNumerical\\\"\\nMethod\[Rule]\\\"ApproximateNumericalLowSNR\\\"\\\
+nMethod\[Rule]\\\"ApproximateAsymptotic\\\"\\nMethod\[Rule]\\\"\
+ApproximateAsymptoticUpperBound\\\"\\nMethod\[Rule]\\\"\
+ApproximateAsymptoticLowerBound\\\"\\n\\nBy default, \
+Method\[Rule]\\\"ApproximateNumerical\\\".\\n\\nThe following diversity \
+reception schemes may be \
+specified:\\n\\nDiversityType\[Rule]\\\"None\\\"\\nDiversityType\[Rule]\\\"\
+MRC\\\"\\nDiversityType\[Rule]\\\"EGC\\\"\\nDiversityType\[Rule]\\\"SC\\\"\\\
+nDiversityType\[Rule]{\\\"SEC\\\", \[Gamma]t} (where \[Gamma]t is the \
+threshold switching value)\\nDiversityType\[Rule]\\\"SLC\\\"\\nDiversityType\
+\[Rule]\\\"SLS\\\"\\n\\nBy default, DiversityType\[Rule]\\\"SLC\\\".\"\>", 
+  "MSG"]], "Print", "PrintUsage",
+ CellChangeTimes->{3.5667298746522093`*^9},
+ CellTags->"Info3566729874-1208992"],
+
+Cell[BoxData["\<\"NGaussianLowSNRNakagamiProbabilityOfDetection\"\>"], "Print",
+ CellChangeTimes->{3.564482194539772*^9, 3.564482238753443*^9, 
+  3.566729874668236*^9}],
+
+Cell[BoxData[
+ StyleBox["\<\"NGaussianLowSNRNakagamiProbabilityOfDetection[M, \[Gamma], \
+\[Lambda], m] calculates the probability of detection for a single energy \
+detector operating in a Nakagami-m fading channel using the NGaussian method.\
+\\nNGaussianLowSNRNakagamiProbabilityOfDetection[M, \[Gamma], \[Lambda], m, \
+n] calculates the probability of detection for energy detection with \
+diversity reception in a Nakagami-m fading channel using the NGaussian \
+method.\\n\\nThe following diversity reception schemes may be \
+specified:\\n\\nDiversityType\[Rule]\\\"None\\\"\\nDiversityType\[Rule]\\\"\
+MRC\\\"\\nDiversityType\[Rule]\\\"EGC\\\"\\nDiversityType\[Rule]\\\"SC\\\"\\\
+nDiversityType\[Rule]{\\\"SEC\\\", \[Gamma]t} (where \[Gamma]t is the \
+threshold switching value)\\nDiversityType\[Rule]\\\"SLC\\\"\\nDiversityType\
+\[Rule]\\\"SLS\\\"\\n\\nBy default, \
+DiversityType\[Rule]\\\"SLC\\\".\\n\\nFunction timing options may be \
+specified using the Timed option. By default, Timed\[Rule]Timed, \
+MaxIterations\[Rule]MaxIterations and MaxTime\[Rule]MaxTime. If \
+Timed\[Rule]True, then a {Pd, time} list of values will be returned. The \
+Timed option is incompatible with database lookup/caching.\"\>", 
+  "MSG"]], "Print", "PrintUsage",
+ CellChangeTimes->{3.566729874748411*^9},
+ CellTags->"Info3566729874-1208992"],
+
+Cell[BoxData["\<\"NGaussianNakagamiProbabilityOfDetection\"\>"], "Print",
+ CellChangeTimes->{3.564482194539772*^9, 3.564482238753443*^9, 
+  3.566729874763688*^9}],
+
+Cell[BoxData[
+ StyleBox["\<\"NGaussianNakagamiProbabilityOfDetection[M, \[Gamma], \
+\[Lambda], m] calculates the probability of detection for a single energy \
+detector operating in a Nakagami-m fading channel using the NGaussian method.\
+\\nNGaussianNakagamiProbabilityOfDetection[M, \[Gamma], \[Lambda], m, n] \
+calculates the probability of detection for energy detection with diversity \
+reception in a Nakagami-m fading channel using the NGaussian method.\\n\\nThe \
+following diversity reception schemes may be specified:\\n\\nDiversityType\
+\[Rule]\\\"None\\\"\\nDiversityType\[Rule]\\\"MRC\\\"\\nDiversityType\[Rule]\\\
+\"EGC\\\"\\nDiversityType\[Rule]\\\"SC\\\"\\nDiversityType\[Rule]{\\\"SEC\\\",\
+ \[Gamma]t} (where \[Gamma]t is the threshold switching \
+value)\\nDiversityType\[Rule]\\\"SLC\\\"\\nDiversityType\[Rule]\\\"SLS\\\"\\n\
+\\nBy default, DiversityType\[Rule]\\\"SLC\\\".\\n\\nFunction timing options \
+may be specified using the Timed option. By default, Timed\[Rule]Timed, \
+MaxIterations\[Rule]MaxIterations and MaxTime\[Rule]MaxTime. If \
+Timed\[Rule]True, then a {Pd, time} list of values will be returned. The \
+Timed option is incompatible with database lookup/caching.\"\>", 
+  "MSG"]], "Print", "PrintUsage",
+ CellChangeTimes->{3.566729874839143*^9},
+ CellTags->"Info3566729874-1208992"],
+
+Cell[BoxData["\<\"NumericalNakagamiProbabilityOfDetection\"\>"], "Print",
+ CellChangeTimes->{3.564482194539772*^9, 3.564482238753443*^9, 
+  3.566729874854207*^9}],
+
+Cell[BoxData[
+ StyleBox["\<\"NumericalNakagamiProbabilityOfDetection[M, \[Gamma], \
+\[Lambda], m] calculates the probability of detection for a single energy \
+detector operating in a Nakagami-m fading channel using the Numerical method.\
+\\nNumericalNakagamiProbabilityOfDetection[M, \[Gamma], \[Lambda], m, n] \
+calculates the probability of detection for energy detection with diversity \
+reception in a Nakagami-m fading channel using the Numerical method.\\n\\nThe \
+following diversity reception schemes may be specified:\\n\\nDiversityType\
+\[Rule]\\\"None\\\"\\nDiversityType\[Rule]\\\"MRC\\\"\\nDiversityType\[Rule]\\\
+\"EGC\\\"\\nDiversityType\[Rule]\\\"SC\\\"\\nDiversityType\[Rule]{\\\"SEC\\\",\
+ \[Gamma]t} (where \[Gamma]t is the threshold switching \
+value)\\nDiversityType\[Rule]\\\"SLC\\\"\\nDiversityType\[Rule]\\\"SLS\\\"\\n\
+\\nBy default, DiversityType\[Rule]\\\"SLC\\\".\\n\\nFunction timing options \
+may be specified using the Timed option. By default, Timed\[Rule]Timed, \
+MaxIterations\[Rule]MaxIterations and MaxTime\[Rule]MaxTime. If \
+Timed\[Rule]True, then a {Pd, time} list of values will be returned. The \
+Timed option is incompatible with database lookup/caching.\"\>", 
+  "MSG"]], "Print", "PrintUsage",
+ CellChangeTimes->{3.566729874929021*^9},
+ CellTags->"Info3566729874-1208992"],
+
+Cell[BoxData["\<\"SunNakagamiProbabilityOfDetection\"\>"], "Print",
+ CellChangeTimes->{3.564482194539772*^9, 3.564482238753443*^9, 
+  3.566729874952238*^9}],
+
+Cell[BoxData[
+ StyleBox["\<\"SunNakagamiProbabilityOfDetection[M, \[Gamma], \[Lambda], m] \
+calculates the probability of detection for a single energy detector \
+operating in a Nakagami-m fading channel using the Sun \
+method.\\nSunNakagamiProbabilityOfDetection[M, \[Gamma], \[Lambda], m, n] \
+calculates the probability of detection for energy detection with diversity \
+reception in a Nakagami-m fading channel using the Sun method.\\n\\nThe \
+following diversity reception schemes may be specified:\\n\\nDiversityType\
+\[Rule]\\\"None\\\"\\nDiversityType\[Rule]\\\"MRC\\\"\\nDiversityType\[Rule]\\\
+\"EGC\\\"\\nDiversityType\[Rule]\\\"SC\\\"\\nDiversityType\[Rule]{\\\"SEC\\\",\
+ \[Gamma]t} (where \[Gamma]t is the threshold switching \
+value)\\nDiversityType\[Rule]\\\"SLC\\\"\\nDiversityType\[Rule]\\\"SLS\\\"\\n\
+\\nBy default, DiversityType\[Rule]\\\"SLC\\\".\\n\\nFunction timing options \
+may be specified using the Timed option. By default, Timed\[Rule]Timed, \
+MaxIterations\[Rule]MaxIterations and MaxTime\[Rule]MaxTime. If \
+Timed\[Rule]True, then a {Pd, time} list of values will be returned. The \
+Timed option is incompatible with database lookup/caching.\"\>", 
+  "MSG"]], "Print", "PrintUsage",
+ CellChangeTimes->{3.566729874970964*^9},
+ CellTags->"Info3566729874-1208992"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Rice", "Section",
+ CellChangeTimes->{{3.5453780335135527`*^9, 3.545378038251978*^9}, {
+  3.564477201559671*^9, 3.56447720735034*^9}, {3.5644820433049393`*^9, 
+  3.564482043688128*^9}, {3.564482082617928*^9, 3.5644820829520483`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"GenerateHelp", "[", "\"\<Rice`\>\"", "]"}], ";"}]], "Input",
+ CellChangeTimes->{{3.5644819960285187`*^9, 3.564482046493178*^9}, {
+  3.564482084798801*^9, 3.564482085164797*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData["\<\"AnnamalaiRiceProbabilityOfDetection\"\>"], "Print",
+ CellChangeTimes->{3.564482197336719*^9, 3.564482241077231*^9, 
+  3.566729875158003*^9}],
+
+Cell[BoxData[
+ StyleBox["\<\"AnnamalaiRiceProbabilityOfDetection[M, \[Gamma], \[Lambda], K] \
+calculates the probability of detection for a single energy detector \
+operating in a Rice fading channel using the Annamalai \
+method.\\nAnnamalaiRiceProbabilityOfDetection[M, \[Gamma], \[Lambda], K, n] \
+calculates the probability of detection for energy detection with diversity \
+reception in a Rice fading channel using the Annamalai method.\\n\\nThe \
+following diversity reception schemes may be specified:\\n\\nDiversityType\
+\[Rule]\\\"None\\\"\\nDiversityType\[Rule]\\\"MRC\\\"\\nDiversityType\[Rule]\\\
+\"EGC\\\"\\nDiversityType\[Rule]\\\"SC\\\"\\nDiversityType\[Rule]{\\\"SEC\\\",\
+ \[Gamma]t} (where \[Gamma]t is the threshold switching \
+value)\\nDiversityType\[Rule]\\\"SLC\\\"\\nDiversityType\[Rule]\\\"SLS\\\"\\n\
+\\nBy default, DiversityType\[Rule]\\\"SLC\\\".\\n\\nFunction timing options \
+may be specified using the Timed option. By default, Timed\[Rule]Timed, \
+MaxIterations\[Rule]MaxIterations and MaxTime\[Rule]MaxTime. If \
+Timed\[Rule]True, then a {Pd, time} list of values will be returned. The \
+Timed option is incompatible with database lookup/caching.\"\>", 
+  "MSG"]], "Print", "PrintUsage",
+ CellChangeTimes->{3.566729875247529*^9},
+ CellTags->"Info3566729875-1208992"],
+
+Cell[BoxData["\<\"AsymptoticErrorRice\"\>"], "Print",
+ CellChangeTimes->{3.564482197336719*^9, 3.564482241077231*^9, 
+  3.566729875262712*^9}],
+
+Cell[BoxData[
+ StyleBox["\<\"AsymptoticErrorRice[Pf, K, n] gives the upper bound for the \
+error of the asymptotic method for the specified parameters.\"\>", 
+  "MSG"]], "Print", "PrintUsage",
+ CellChangeTimes->{3.566729875343747*^9},
+ CellTags->"Info3566729875-1208992"],
+
+Cell[BoxData["\<\"AsymptoticRiceProbabilityOfDetection\"\>"], "Print",
+ CellChangeTimes->{3.564482197336719*^9, 3.564482241077231*^9, 
+  3.5667298753621387`*^9}],
+
+Cell[BoxData[
+ StyleBox["\<\"AsymptoticRiceProbabilityOfDetection[M, \[Gamma], \[Lambda], \
+K] calculates the probability of detection for a single energy detector \
+operating in a Rice fading channel using the Asymptotic \
+method.\\nAsymptoticRiceProbabilityOfDetection[M, \[Gamma], \[Lambda], K, n] \
+calculates the probability of detection for energy detection with diversity \
+reception in a Rice fading channel using the Asymptotic method.\\n\\nThe \
+following diversity reception schemes may be specified:\\n\\nDiversityType\
+\[Rule]\\\"None\\\"\\nDiversityType\[Rule]\\\"MRC\\\"\\nDiversityType\[Rule]\\\
+\"EGC\\\"\\nDiversityType\[Rule]\\\"SC\\\"\\nDiversityType\[Rule]{\\\"SEC\\\",\
+ \[Gamma]t} (where \[Gamma]t is the threshold switching \
+value)\\nDiversityType\[Rule]\\\"SLC\\\"\\nDiversityType\[Rule]\\\"SLS\\\"\\n\
+\\nBy default, DiversityType\[Rule]\\\"SLC\\\".\\n\\nFunction timing options \
+may be specified using the Timed option. By default, Timed\[Rule]Timed, \
+MaxIterations\[Rule]MaxIterations and MaxTime\[Rule]MaxTime. If \
+Timed\[Rule]True, then a {Pd, time} list of values will be returned. The \
+Timed option is incompatible with database lookup/caching.\"\>", 
+  "MSG"]], "Print", "PrintUsage",
+ CellChangeTimes->{3.56672987539433*^9},
+ CellTags->"Info3566729875-1208992"],
+
+Cell[BoxData["\<\"IntegerKNRiceProbabilityOfDetection\"\>"], "Print",
+ CellChangeTimes->{3.564482197336719*^9, 3.564482241077231*^9, 
+  3.566729875412238*^9}],
+
+Cell[BoxData[
+ StyleBox["\<\"IntegerKNRiceProbabilityOfDetection[M, \[Gamma], \[Lambda], K] \
+calculates the probability of detection for a single energy detector \
+operating in a Rice fading channel using the IntegerKN \
+method.\\nIntegerKNRiceProbabilityOfDetection[M, \[Gamma], \[Lambda], K, n] \
+calculates the probability of detection for energy detection with diversity \
+reception in a Rice fading channel using the IntegerKN method.\\n\\nThe \
+following diversity reception schemes may be specified:\\n\\nDiversityType\
+\[Rule]\\\"None\\\"\\nDiversityType\[Rule]\\\"MRC\\\"\\nDiversityType\[Rule]\\\
+\"EGC\\\"\\nDiversityType\[Rule]\\\"SC\\\"\\nDiversityType\[Rule]{\\\"SEC\\\",\
+ \[Gamma]t} (where \[Gamma]t is the threshold switching \
+value)\\nDiversityType\[Rule]\\\"SLC\\\"\\nDiversityType\[Rule]\\\"SLS\\\"\\n\
+\\nBy default, DiversityType\[Rule]\\\"SLC\\\".\\n\\nFunction timing options \
+may be specified using the Timed option. By default, Timed\[Rule]Timed, \
+MaxIterations\[Rule]MaxIterations and MaxTime\[Rule]MaxTime. If \
+Timed\[Rule]True, then a {Pd, time} list of values will be returned. The \
+Timed option is incompatible with database lookup/caching.\"\>", 
+  "MSG"]], "Print", "PrintUsage",
+ CellChangeTimes->{3.5667298754396677`*^9},
+ CellTags->"Info3566729875-1208992"],
+
+Cell[BoxData["\<\"LowSNRAssumptionErrorRice\"\>"], "Print",
+ CellChangeTimes->{3.564482197336719*^9, 3.564482241077231*^9, 
+  3.5667298754576283`*^9}],
+
+Cell[BoxData[
+ StyleBox["\<\"LowSNRAssumptionErrorRice[M, \[Gamma], \[Lambda], K, n] \
+calculates the upper bound for the low SNR approximation error.\\n\\nThe \
+following diversity reception schemes may be specified:\\n\\nDiversityType\
+\[Rule]\\\"None\\\"\\nDiversityType\[Rule]\\\"MRC\\\"\\nDiversityType\[Rule]\\\
+\"EGC\\\"\\nDiversityType\[Rule]\\\"SC\\\"\\nDiversityType\[Rule]{\\\"SEC\\\",\
+ \[Gamma]t} (where \[Gamma]t is the threshold switching \
+value)\\nDiversityType\[Rule]\\\"SLC\\\"\\nDiversityType\[Rule]\\\"SLS\\\"\\n\
+\\nBy default, DiversityType\[Rule]\\\"SLC\\\".\"\>", "MSG"]], "Print", \
+"PrintUsage",
+ CellChangeTimes->{3.56672987547958*^9},
+ CellTags->"Info3566729875-1208992"],
+
+Cell[BoxData["\<\"NGaussianLowSNRRiceProbabilityOfDetection\"\>"], "Print",
+ CellChangeTimes->{3.564482197336719*^9, 3.564482241077231*^9, 
+  3.566729875496739*^9}],
+
+Cell[BoxData[
+ StyleBox["\<\"NGaussianLowSNRRiceProbabilityOfDetection[M, \[Gamma], \
+\[Lambda], K] calculates the probability of detection for a single energy \
+detector operating in a Rice fading channel using the NGaussian \
+method.\\nNGaussianLowSNRRiceProbabilityOfDetection[M, \[Gamma], \[Lambda], \
+K, n] calculates the probability of detection for energy detection with \
+diversity reception in a Rice fading channel using the NGaussian \
+method.\\n\\nThe following diversity reception schemes may be \
+specified:\\n\\nDiversityType\[Rule]\\\"None\\\"\\nDiversityType\[Rule]\\\"\
+MRC\\\"\\nDiversityType\[Rule]\\\"EGC\\\"\\nDiversityType\[Rule]\\\"SC\\\"\\\
+nDiversityType\[Rule]{\\\"SEC\\\", \[Gamma]t} (where \[Gamma]t is the \
+threshold switching value)\\nDiversityType\[Rule]\\\"SLC\\\"\\nDiversityType\
+\[Rule]\\\"SLS\\\"\\n\\nBy default, \
+DiversityType\[Rule]\\\"SLC\\\".\\n\\nFunction timing options may be \
+specified using the Timed option. By default, Timed\[Rule]Timed, \
+MaxIterations\[Rule]MaxIterations and MaxTime\[Rule]MaxTime. If \
+Timed\[Rule]True, then a {Pd, time} list of values will be returned. The \
+Timed option is incompatible with database lookup/caching.\"\>", 
+  "MSG"]], "Print", "PrintUsage",
+ CellChangeTimes->{3.566729875579525*^9},
+ CellTags->"Info3566729875-1208992"],
+
+Cell[BoxData["\<\"NGaussianRiceProbabilityOfDetection\"\>"], "Print",
+ CellChangeTimes->{3.564482197336719*^9, 3.564482241077231*^9, 
+  3.5667298755952387`*^9}],
+
+Cell[BoxData[
+ StyleBox["\<\"NGaussianRiceProbabilityOfDetection[M, \[Gamma], \[Lambda], K] \
+calculates the probability of detection for a single energy detector \
+operating in a Rice fading channel using the NGaussian \
+method.\\nNGaussianRiceProbabilityOfDetection[M, \[Gamma], \[Lambda], K, n] \
+calculates the probability of detection for energy detection with diversity \
+reception in a Rice fading channel using the NGaussian method.\\n\\nThe \
+following diversity reception schemes may be specified:\\n\\nDiversityType\
+\[Rule]\\\"None\\\"\\nDiversityType\[Rule]\\\"MRC\\\"\\nDiversityType\[Rule]\\\
+\"EGC\\\"\\nDiversityType\[Rule]\\\"SC\\\"\\nDiversityType\[Rule]{\\\"SEC\\\",\
+ \[Gamma]t} (where \[Gamma]t is the threshold switching \
+value)\\nDiversityType\[Rule]\\\"SLC\\\"\\nDiversityType\[Rule]\\\"SLS\\\"\\n\
+\\nBy default, DiversityType\[Rule]\\\"SLC\\\".\\n\\nFunction timing options \
+may be specified using the Timed option. By default, Timed\[Rule]Timed, \
+MaxIterations\[Rule]MaxIterations and MaxTime\[Rule]MaxTime. If \
+Timed\[Rule]True, then a {Pd, time} list of values will be returned. The \
+Timed option is incompatible with database lookup/caching.\"\>", 
+  "MSG"]], "Print", "PrintUsage",
+ CellChangeTimes->{3.566729875673553*^9},
+ CellTags->"Info3566729875-1208992"],
+
+Cell[BoxData["\<\"RiceLimit\"\>"], "Print",
+ CellChangeTimes->{3.564482197336719*^9, 3.564482241077231*^9, 
+  3.5667298756883698`*^9}],
+
+Cell[BoxData[
+ StyleBox["\<\"RiceLimit[M, \[Gamma], \[Lambda], K] calculates the truncation \
+point for use in the specified method for a single energy detector operating \
+on a Rice channel.\\nRiceLimit[M, \[Gamma], \[Lambda], K, n] calculates the \
+truncation point for use in the specified method for energy detection with \
+diversity reception in a Rice channel.\\n\\nThe following methods may be \
+specified:\\n\\nMethod\[Rule]\\\"ExactNumerical\\\"\\nMethod\[Rule]\\\"\
+ExactAnnamalai\\\"\\nMethod\[Rule]\\\"ApproximateNumerical\\\"\\nMethod\[Rule]\
+\\\"ApproximateNumericalLowSNR\\\"\\nMethod\[Rule]\\\"ApproximateIntegerKN\\\"\
+\\nMethod\[Rule]\\\"ApproximateAsymptotic\\\"\\n\\nBy default, \
+Method\[Rule]\\\"ExactAnnamalai\\\".\\n\\nThe following diversity reception \
+schemes may be \
+specified:\\n\\nDiversityType\[Rule]\\\"None\\\"\\nDiversityType\[Rule]\\\"\
+MRC\\\"\\nDiversityType\[Rule]\\\"EGC\\\"\\nDiversityType\[Rule]\\\"SC\\\"\\\
+nDiversityType\[Rule]{\\\"SEC\\\", \[Gamma]t} (where \[Gamma]t is the \
+threshold switching value)\\nDiversityType\[Rule]\\\"SLC\\\"\\nDiversityType\
+\[Rule]\\\"SLS\\\"\\n\\nBy default, DiversityType\[Rule]\\\"SLC\\\".\"\>", 
+  "MSG"]], "Print", "PrintUsage",
+ CellChangeTimes->{3.566729875712533*^9},
+ CellTags->"Info3566729875-1208992"],
+
+Cell[BoxData["\<\"RicePDF\"\>"], "Print",
+ CellChangeTimes->{3.564482197336719*^9, 3.564482241077231*^9, 
+  3.5667298757267838`*^9}],
+
+Cell[BoxData[
+ StyleBox["\<\"RicePDF[\[Gamma], K, x] evaluates the probability density \
+function of the instantaneous signal to noise ratio at a single energy \
+detector operating on a Rice fading channel at x.\\nRicePDF[\[Gamma], K, x, \
+n] evaluates the probability density function of the average instantaneous \
+signal to noise ratio for energy detection with diversity reception in a Rice \
+fading channel.\\n\\nThe following methods may be specified:\\n\\nMethod\
+\[Rule]\\\"Exact\\\"\\nMethod\[Rule]\\\"Approximate\\\"\\n\\nBy default, \
+Method\[Rule]\\\"Exact\\\".\\n\\nThe following diversity reception schemes \
+may be specified:\\n\\nDiversityType\[Rule]\\\"None\\\"\\nDiversityType\[Rule]\
+\\\"MRC\\\"\\nDiversityType\[Rule]\\\"EGC\\\"\\nDiversityType\[Rule]\\\"SC\\\"\
+\\nDiversityType\[Rule]{\\\"SEC\\\", \[Gamma]t} (where \[Gamma]t is the \
+threshold switching value)\\nDiversityType\[Rule]\\\"SLC\\\"\\nDiversityType\
+\[Rule]\\\"SLS\\\"\\n\\nBy default, DiversityType\[Rule]\\\"SLC\\\".\"\>", 
+  "MSG"]], "Print", "PrintUsage",
+ CellChangeTimes->{3.566729875809474*^9},
+ CellTags->"Info3566729875-1208992"],
+
+Cell[BoxData["\<\"RiceProbabilityOfDetection\"\>"], "Print",
+ CellChangeTimes->{3.564482197336719*^9, 3.564482241077231*^9, 
+  3.566729875824828*^9}],
+
+Cell[BoxData[
+ StyleBox["\<\"RiceProbabilityOfDetection[M, \[Gamma], \[Lambda], K] \
+calculates the probability of detection for a single energy detector \
+operating on a Rice fading channel.\\nRiceProbabilityOfDetection[M, \[Gamma], \
+\[Lambda], K, n] calculates the probability of detection for energy detection \
+with diversity reception in a Rice fading channel.\\n\\nThe following methods \
+may be specified:\\n\\nMethod\[Rule]\\\"ExactNumerical\\\"\\nMethod\[Rule]\\\"\
+ExactAnnamalai\\\"\\nMethod\[Rule]\\\"ApproximateNumerical\\\"\\nMethod\[Rule]\
+\\\"ApproximateNumericalLowSNR\\\"\\nMethod\[Rule]\\\"ApproximateIntegerKN\\\"\
+\\nMethod\[Rule]\\\"ApproximateAsymptotic\\\"\\n\\nBy default, \
+Method\[Rule]\\\"ApproximateNumerical\\\".\\n\\nThe following diversity \
+reception schemes may be \
+specified:\\n\\nDiversityType\[Rule]\\\"None\\\"\\nDiversityType\[Rule]\\\"\
+MRC\\\"\\nDiversityType\[Rule]\\\"EGC\\\"\\nDiversityType\[Rule]\\\"SC\\\"\\\
+nDiversityType\[Rule]{\\\"SEC\\\", \[Gamma]t} (where \[Gamma]t is the \
+threshold switching value)\\nDiversityType\[Rule]\\\"SLC\\\"\\nDiversityType\
+\[Rule]\\\"SLS\\\"\\n\\nBy default, \
+DiversityType\[Rule]\\\"SLC\\\".\\n\\nFunction timing options may be \
+specified using the Timed option. By default, Timed\[Rule]False, \
+MaxIterations\[Rule]1000 and MaxTime\[Rule]600. If Timed\[Rule]True, then a \
+{Pd, time} list of values will be returned. The Timed option is incompatible \
+with database lookup/caching.\"\>", "MSG"]], "Print", "PrintUsage",
+ CellChangeTimes->{3.5667298759052763`*^9},
+ CellTags->"Info3566729875-1208992"],
+
+Cell[BoxData["\<\"RiceSampleComplexity\"\>"], "Print",
+ CellChangeTimes->{3.564482197336719*^9, 3.564482241077231*^9, 
+  3.566729875921235*^9}],
+
+Cell[BoxData[
+ StyleBox["\<\"RiceSampleComplexity[\[Gamma], Pf, Pd, K, n] calculates the \
+number of samples required for the specified decision probabilities and \
+signal to noise ratio in a Rice channel.\\n\\nThe following methods may be \
+specified:\\n\\nMethod\[Rule]\\\"ExactNumerical\\\"\\nMethod\[Rule]\\\"\
+ApproximateNumerical\\\"\\nMethod\[Rule]\\\"ApproximateNumericalLowSNR\\\"\\\
+nMethod\[Rule]\\\"ApproximateAsymptotic\\\"\\n\\nBy default, \
+Method\[Rule]\\\"ApproximateNumerical\\\".\\n\\nThe following diversity \
+reception schemes may be \
+specified:\\n\\nDiversityType\[Rule]\\\"None\\\"\\nDiversityType\[Rule]\\\"\
+MRC\\\"\\nDiversityType\[Rule]\\\"EGC\\\"\\nDiversityType\[Rule]\\\"SC\\\"\\\
+nDiversityType\[Rule]{\\\"SEC\\\", \[Gamma]t} (where \[Gamma]t is the \
+threshold switching value)\\nDiversityType\[Rule]\\\"SLC\\\"\\nDiversityType\
+\[Rule]\\\"SLS\\\"\\n\\nBy default, DiversityType\[Rule]\\\"SLC\\\".\"\>", 
+  "MSG"]], "Print", "PrintUsage",
+ CellChangeTimes->{3.56672987594403*^9},
+ CellTags->"Info3566729875-1208992"],
+
+Cell[BoxData["\<\"SmallPfRiceProbabilityOfDetection\"\>"], "Print",
+ CellChangeTimes->{3.564482197336719*^9, 3.564482241077231*^9, 
+  3.566729875959161*^9}],
+
+Cell[BoxData[
+ StyleBox["\<\"SmallPfRiceProbabilityOfDetection[M, \[Gamma], \[Lambda], K] \
+calculates the probability of detection for a single energy detector \
+operating in a Rice fading channel using the SmallPf \
+method.\\nSmallPfRiceProbabilityOfDetection[M, \[Gamma], \[Lambda], K, n] \
+calculates the probability of detection for energy detection with diversity \
+reception in a Rice fading channel using the SmallPf method.\\n\\nThe \
+following diversity reception schemes may be specified:\\n\\nDiversityType\
+\[Rule]\\\"None\\\"\\nDiversityType\[Rule]\\\"MRC\\\"\\nDiversityType\[Rule]\\\
+\"EGC\\\"\\nDiversityType\[Rule]\\\"SC\\\"\\nDiversityType\[Rule]{\\\"SEC\\\",\
+ \[Gamma]t} (where \[Gamma]t is the threshold switching \
+value)\\nDiversityType\[Rule]\\\"SLC\\\"\\nDiversityType\[Rule]\\\"SLS\\\"\\n\
+\\nBy default, DiversityType\[Rule]\\\"SLC\\\".\\n\\nFunction timing options \
+may be specified using the Timed option. By default, Timed\[Rule]Timed, \
+MaxIterations\[Rule]MaxIterations and MaxTime\[Rule]MaxTime. If \
+Timed\[Rule]True, then a {Pd, time} list of values will be returned. The \
+Timed option is incompatible with database lookup/caching.\"\>", 
+  "MSG"]], "Print", "PrintUsage",
+ CellChangeTimes->{3.5667298760422497`*^9},
+ CellTags->"Info3566729875-1208992"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["QFunction", "Section",
+ CellChangeTimes->{{3.5453780335135527`*^9, 3.545378038251978*^9}, {
+  3.564477201559671*^9, 3.56447720735034*^9}, {3.5644820433049393`*^9, 
+  3.564482043688128*^9}, {3.5644820970815372`*^9, 3.564482098439966*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"GenerateHelp", "[", "\"\<QFunction`\>\"", "]"}], ";"}]], "Input",
+ CellChangeTimes->{{3.5644819960285187`*^9, 3.564482046493178*^9}, {
+  3.564482101312537*^9, 3.564482103742082*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData["\<\"InverseQ\"\>"], "Print",
+ CellChangeTimes->{3.564482198799305*^9, 3.564482242540299*^9, 
+  3.5667298761337013`*^9}],
+
+Cell[BoxData[
+ StyleBox["\<\"InverseQ[P] calculates the value of the inverse of the \
+Gaussian Q-function at P.\"\>", "MSG"]], "Print", "PrintUsage",
+ CellChangeTimes->{3.56672987621104*^9},
+ CellTags->"Info3566729876-1208992"],
+
+Cell[BoxData["\<\"Q\"\>"], "Print",
+ CellChangeTimes->{3.564482198799305*^9, 3.564482242540299*^9, 
+  3.566729876225707*^9}],
+
+Cell[BoxData[
+ StyleBox["\<\"Q[x] calculates the value of Gaussian Q-function at x.\"\>", 
+  "MSG"]], "Print", "PrintUsage",
+ CellChangeTimes->{3.566729876251398*^9},
+ CellTags->"Info3566729876-1208992"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["InverseMarcumQ", "Section",
+ CellChangeTimes->{{3.5453780335135527`*^9, 3.545378038251978*^9}, {
+  3.564477201559671*^9, 3.56447720735034*^9}, {3.5644820433049393`*^9, 
+  3.564482043688128*^9}, {3.5644820970815372`*^9, 3.564482098439966*^9}, {
+  3.56672985996171*^9, 3.5667298669697123`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"GenerateHelp", "[", "\"\<InverseMarcumQ`\>\"", "]"}], 
+  ";"}]], "Input",
+ CellChangeTimes->{{3.5644819960285187`*^9, 3.564482046493178*^9}, {
+   3.564482101312537*^9, 3.564482103742082*^9}, 3.5667298693004932`*^9}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData["\<\"InverseMarcumQ`InverseMarcumQ\"\>"], "Print",
+ CellChangeTimes->{
+  3.564482198799305*^9, 3.564482242540299*^9, {3.5667298763255577`*^9, 
+   3.5667298983943768`*^9}}],
+
+Cell[BoxData[
+ StyleBox["\<\"\\\"InverseMarcumQ[m, a, z] calculates the value of the \
+inverse of the Marcum Q-function, \\!\\(\\*SubscriptBox[\\(Q\\), \
+\\(m\\)]\\)(a, b). If \\!\\(\\*SubscriptBox[\\(Q\\), \\(m\\)]\\)(a, b) = z, \
+then this function will return b = \
+\\!\\(\\*SuperscriptBox[SubscriptBox[\\(Q\\), \\(m\\)], \\(-1\\)]\\)(a, z).\\\
+\"\"\>", "MSG"]], "Print", "PrintUsage",
+ CellChangeTimes->{3.566729898450713*^9},
+ CellTags->"Info3566729898-1208992"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["ErfApprox", "Section",
+ CellChangeTimes->{{3.5453780335135527`*^9, 3.545378038251978*^9}, {
+  3.564477201559671*^9, 3.56447720735034*^9}, {3.5644820433049393`*^9, 
+  3.564482043688128*^9}, {3.564482126264823*^9, 3.564482127864111*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"GenerateHelp", "[", "\"\<ErfApprox`\>\"", "]"}], ";"}]], "Input",
+ CellChangeTimes->{{3.5644819960285187`*^9, 3.564482046493178*^9}, {
+  3.5644821296476707`*^9, 3.564482133134039*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData["\<\"ErfApprox`ErfApprox\"\>"], "Print",
+ CellChangeTimes->{3.564482199161399*^9, 3.564482242824889*^9, 
+  3.566729876496456*^9}],
+
+Cell[BoxData[
+ StyleBox["\<\"ErfApprox[x] calculates the approximate value of the error \
+function at x.\\n\\nThe following methods can be \
+given:\\n\\nMethod->\\\"Chiani\\\"\\nMethod->\\\"Lopez-Benitez\\\"\\nMethod->\
+\\\"Loskot\\\"\\nMethod->\\\"Karagiannidis\\\"\\n\\nBy default, \
+Method->Lopez-Benitez.\"\>", "MSG"]], "Print", "PrintUsage",
+ CellChangeTimes->{3.56672987658916*^9},
+ CellTags->"Info3566729876-1208992"],
+
+Cell[BoxData["\<\"ErfApprox`ErfcApprox\"\>"], "Print",
+ CellChangeTimes->{3.564482199161399*^9, 3.564482242824889*^9, 
+  3.5667298766059504`*^9}],
+
+Cell[BoxData[
+ StyleBox["\<\"ErfcApprox[x] calculates the approximate value of the \
+complementary error function at x.\\n\\nThe following methods can be \
+given:\\n\\nMethod->\\\"Chiani\\\"\\nMethod->\\\"Lopez-Benitez\\\"\\nMethod->\
+\\\"Loskot\\\"\\nMethod->\\\"Karagiannidis\\\"\\n\\nBy default, \
+Method->Lopez-Benitez.\"\>", "MSG"]], "Print", "PrintUsage",
+ CellChangeTimes->{3.566729876684024*^9},
+ CellTags->"Info3566729876-1208992"],
+
+Cell[BoxData["\<\"ErfApprox`LopezBenitezParameters\"\>"], "Print",
+ CellChangeTimes->{3.564482199161399*^9, 3.564482242824889*^9, 
+  3.56672987670539*^9}],
+
+Cell[BoxData[
+ StyleBox["\<\"LopezBenitezParameters[x] returns Lopez-Benitez's min-MARE \
+parameters for x.\"\>", "MSG"]], "Print", "PrintUsage",
+ CellChangeTimes->{3.566729876775655*^9},
+ CellTags->"Info3566729876-1208992"],
+
+Cell[BoxData["\<\"ErfApprox`NErfApprox\"\>"], "Print",
+ CellChangeTimes->{3.564482199161399*^9, 3.564482242824889*^9, 
+  3.566729876789336*^9}],
+
+Cell[BoxData[
+ StyleBox["\<\"NErfcApprox[x] numerically evaluates the approximate value of \
+the error function at x.\\n\\nThe following methods can be \
+given:\\n\\nMethod->\\\"Chiani\\\"\\nMethod->\\\"Lopez-Benitez\\\"\\nMethod->\
+\\\"Loskot\\\"\\nMethod->\\\"Karagiannidis\\\"\\n\\nBy default, \
+Method->Lopez-Benitez.\"\>", "MSG"]], "Print", "PrintUsage",
+ CellChangeTimes->{3.566729876861977*^9},
+ CellTags->"Info3566729876-1208992"],
+
+Cell[BoxData["\<\"ErfApprox`NErfApproxError\"\>"], "Print",
+ CellChangeTimes->{3.564482199161399*^9, 3.564482242824889*^9, 
+  3.566729876877666*^9}],
+
+Cell[BoxData[
+ StyleBox["\<\"NErfApproxError[x] calculates the error between the error \
+function and its approximation.\\n\\nThe following methods can be \
+given:\\n\\nMethod->\\\"Chiani\\\"\\nMethod->\\\"Lopez-Benitez\\\"\\nMethod->\
+\\\"Loskot\\\"\\nMethod->\\\"Karagiannidis\\\"\\n\\nBy default, \
+Method->Lopez-Benitez.\"\>", "MSG"]], "Print", "PrintUsage",
+ CellChangeTimes->{3.566729876903823*^9},
+ CellTags->"Info3566729876-1208992"],
+
+Cell[BoxData["\<\"ErfApprox`NErfcApprox\"\>"], "Print",
+ CellChangeTimes->{3.564482199161399*^9, 3.564482242824889*^9, 
+  3.5667298769179993`*^9}],
+
+Cell[BoxData[
+ StyleBox["\<\"NErfcApprox[x] numerically evaluates the approximate value of \
+the complementary error function at x.\\n\\nThe following methods can be \
+given:\\n\\nMethod->\\\"Chiani\\\"\\nMethod->\\\"Lopez-Benitez\\\"\\nMethod->\
+\\\"Loskot\\\"\\nMethod->\\\"Karagiannidis\\\"\\n\\nBy default, \
+Method->Lopez-Benitez.\"\>", "MSG"]], "Print", "PrintUsage",
+ CellChangeTimes->{3.56672987693602*^9},
+ CellTags->"Info3566729876-1208992"],
+
+Cell[BoxData["\<\"ErfApprox`NErfcApproxError\"\>"], "Print",
+ CellChangeTimes->{3.564482199161399*^9, 3.564482242824889*^9, 
+  3.5667298769543457`*^9}],
+
+Cell[BoxData[
+ StyleBox["\<\"NErfcApproxError[x] calculates the error between the \
+complementary error function and its approximation.\\n\\nThe following \
+methods can be given:\\n\\nMethod->\\\"Chiani\\\"\\nMethod->\\\"Lopez-Benitez\
+\\\"\\nMethod->\\\"Loskot\\\"\\nMethod->\\\"Karagiannidis\\\"\\n\\nBy \
+default, Method->Lopez-Benitez.\"\>", "MSG"]], "Print", "PrintUsage",
+ CellChangeTimes->{3.566729876979025*^9},
+ CellTags->"Info3566729876-1208992"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Extras", "Section",
+ CellChangeTimes->{{3.5453780335135527`*^9, 3.545378038251978*^9}, {
+  3.564477201559671*^9, 3.56447720735034*^9}, {3.5644820433049393`*^9, 
+  3.564482043688128*^9}, {3.564482139273525*^9, 3.564482140040299*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"GenerateHelp", "[", "\"\<Extras`\>\"", "]"}], ";"}]], "Input",
+ CellChangeTimes->{{3.5644819960285187`*^9, 3.564482046493178*^9}, {
+  3.564482141966558*^9, 3.564482142765801*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData["\<\"Extras`FaddeevaDerivative\"\>"], "Print",
+ CellChangeTimes->{3.564482200173284*^9, 3.5644822435392942`*^9, 
+  3.566729877056861*^9}],
+
+Cell[BoxData[
+ StyleBox["\<\"\\\"Computes the \\!\\(\\*SuperscriptBox[\\(k\\), \\(th\\)]\\) \
+derivative of the Faddeeva function w(z).\\\"\"\>", "MSG"]], "Print", \
+"PrintUsage",
+ CellChangeTimes->{3.566729877138185*^9},
+ CellTags->"Info3566729877-1208992"],
+
+Cell[BoxData["\<\"Extras`ProcessChannelType\"\>"], "Print",
+ CellChangeTimes->{3.564482200173284*^9, 3.5644822435392942`*^9, 
+  3.566729877156554*^9}],
+
+Cell[BoxData[
+ StyleBox["\<\"ProcessChannelType[channelType] processes the specified \
+channel type and returns a list.\"\>", "MSG"]], "Print", "PrintUsage",
+ CellChangeTimes->{3.566729877222568*^9},
+ CellTags->"Info3566729877-1208992"],
+
+Cell[BoxData["\<\"Extras`ProcessDiversityType\"\>"], "Print",
+ CellChangeTimes->{3.564482200173284*^9, 3.5644822435392942`*^9, 
+  3.566729877239769*^9}],
+
+Cell[BoxData[
+ StyleBox["\<\"ProcessDiversityType[diversityType] processes the specified \
+diversity type and returns a list.\"\>", "MSG"]], "Print", "PrintUsage",
+ CellChangeTimes->{3.566729877407968*^9},
+ CellTags->"Info3566729877-1208992"],
+
+Cell[BoxData["\<\"Extras`ProcessMethod\"\>"], "Print",
+ CellChangeTimes->{3.564482200173284*^9, 3.5644822435392942`*^9, 
+  3.5667298774229393`*^9}],
+
+Cell[BoxData[
+ StyleBox["\<\"ProcessMethod[method] processes the specified method and \
+returns a list.\"\>", "MSG"]], "Print", "PrintUsage",
+ CellChangeTimes->{3.566729877442066*^9},
+ CellTags->"Info3566729877-1208992"],
+
+Cell[BoxData["\<\"Extras`ProcessSNR\"\>"], "Print",
+ CellChangeTimes->{3.564482200173284*^9, 3.5644822435392942`*^9, 
+  3.566729877455756*^9}],
+
+Cell[BoxData[
+ StyleBox["\<\"ProcessSNR[\[Gamma], diversityType] processes lists of SNR \
+values for the specified diversity type.\"\>", "MSG"]], "Print", "PrintUsage",
+ 
+ CellChangeTimes->{3.566729877475009*^9},
+ CellTags->"Info3566729877-1208992"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["DBLogging", "Section",
+ CellChangeTimes->{{3.5453780335135527`*^9, 3.545378038251978*^9}, {
+  3.564477201559671*^9, 3.56447720735034*^9}, {3.5644820433049393`*^9, 
+  3.564482043688128*^9}, {3.5644821762008953`*^9, 3.564482177912114*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"GenerateHelp", "[", "\"\<DBLogging`\>\"", "]"}], ";"}]], "Input",
+ CellChangeTimes->{{3.5644819960285187`*^9, 3.564482046493178*^9}, {
+  3.564482187421219*^9, 3.564482189613405*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData["\<\"DBLogging`CacheProbabilityOfDetection\"\>"], "Print",
+ CellChangeTimes->{3.564482200656953*^9, 3.56448224385732*^9, 
+  3.566729877590743*^9}],
+
+Cell[BoxData[
+ StyleBox["\<\"CacheProbabilityOfDetection[algorithm, channelType, M, \
+\[Gamma], Pf, n, m, result] caches the specified record in the database.\"\>",
+   "MSG"]], "Print", "PrintUsage",
+ CellChangeTimes->{3.5667298776714067`*^9},
+ CellTags->"Info3566729877-1208992"],
+
+Cell[BoxData["\<\"DBLogging`CacheSampleComplexity\"\>"], "Print",
+ CellChangeTimes->{3.564482200656953*^9, 3.56448224385732*^9, 
+  3.5667298776945753`*^9}],
+
+Cell[BoxData[
+ StyleBox["\<\"CacheSampleComplexity[channel, precision, n, \[Gamma], Pf, Pm, \
+result] caches the specified record in the database.\"\>", "MSG"]], "Print", \
+"PrintUsage",
+ CellChangeTimes->{3.566729877759706*^9},
+ CellTags->"Info3566729877-1208992"],
+
+Cell[BoxData["\<\"DBLogging`GetProbabilityOfDetection\"\>"], "Print",
+ CellChangeTimes->{3.564482200656953*^9, 3.56448224385732*^9, 
+  3.5667298777761517`*^9}],
+
+Cell[BoxData[
+ StyleBox["\<\"GetProbabilityOfDetection[algorithm, channelType, M, \[Gamma], \
+Pf, n, m] fetches the specified record from the database.\"\>", 
+  "MSG"]], "Print", "PrintUsage",
+ CellChangeTimes->{3.5667298779514017`*^9},
+ CellTags->"Info3566729877-1208992"],
+
+Cell[BoxData["\<\"DBLogging`GetSampleComplexity\"\>"], "Print",
+ CellChangeTimes->{3.564482200656953*^9, 3.56448224385732*^9, 
+  3.566729877969142*^9}],
+
+Cell[BoxData[
+ StyleBox["\<\"GetSampleComplexity[channel, precision, n, \[Gamma], Pf, Pm] \
+fetches the specified record from the database.\"\>", "MSG"]], "Print", \
+"PrintUsage",
+ CellChangeTimes->{3.56672987806391*^9},
+ CellTags->"Info3566729877-1208992"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["SQLite", "Section",
+ CellChangeTimes->{{3.5453780335135527`*^9, 3.545378038251978*^9}, {
+  3.564477201559671*^9, 3.56447720735034*^9}, {3.5644820433049393`*^9, 
+  3.564482043688128*^9}, {3.564482179960795*^9, 3.5644821812081547`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"GenerateHelp", "[", "\"\<SQLite`\>\"", "]"}], ";"}]], "Input",
+ CellChangeTimes->{{3.5644819960285187`*^9, 3.564482046493178*^9}, {
+  3.564482183517953*^9, 3.564482184334737*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData["\<\"SQLite`SQLiteCloseDatabase\"\>"], "Print",
+ CellChangeTimes->{3.5644822013195047`*^9, 3.5644822444794683`*^9, 
+  3.566729878237774*^9}],
+
+Cell[BoxData[
+ StyleBox["\<\"SQLiteCloseDatabase[db] closes the database specified by the \
+file handle db.\"\>", "MSG"]], "Print", "PrintUsage",
+ CellChangeTimes->{3.566729878360392*^9},
+ CellTags->"Info3566729878-1208992"],
+
+Cell[BoxData["\<\"SQLite`SQLiteCreateTable\"\>"], "Print",
+ CellChangeTimes->{3.5644822013195047`*^9, 3.5644822444794683`*^9, 
+  3.56672987837541*^9}],
+
+Cell[BoxData[
+ StyleBox["\<\"SQLiteCreateTable[db, tableName, columnNames, columnTypes] \
+creates a table named tableName with columns specified by columnNames and \
+columnTypes in the database specified by the handle db.\"\>", "MSG"]], "Print",\
+ "PrintUsage",
+ CellChangeTimes->{3.566729878451665*^9},
+ CellTags->"Info3566729878-1208992"],
+
+Cell[BoxData["\<\"SQLite`SQLiteInsertRecord\"\>"], "Print",
+ CellChangeTimes->{3.5644822013195047`*^9, 3.5644822444794683`*^9, 
+  3.5667298784663982`*^9}],
+
+Cell[BoxData[
+ StyleBox["\<\"SQLiteInsertRecord[db, tableName, columnNames, values] inserts \
+a new record into the specified table.\"\>", "MSG"]], "Print", "PrintUsage",
+ CellChangeTimes->{3.5667298784849043`*^9},
+ CellTags->"Info3566729878-1208992"],
+
+Cell[BoxData["\<\"SQLite`SQLiteLookupRecord\"\>"], "Print",
+ CellChangeTimes->{3.5644822013195047`*^9, 3.5644822444794683`*^9, 
+  3.566729878499132*^9}],
+
+Cell[BoxData[
+ StyleBox["\<\"SQLiteLookupRecord[db, tableName, columnNames, values] returns \
+the value of the entries specified by tableName, columnNames and values.\"\>",
+   "MSG"]], "Print", "PrintUsage",
+ CellChangeTimes->{3.566729878687929*^9},
+ CellTags->"Info3566729878-1208992"],
+
+Cell[BoxData["\<\"SQLite`SQLiteOpenDatabase\"\>"], "Print",
+ CellChangeTimes->{3.5644822013195047`*^9, 3.5644822444794683`*^9, 
+  3.566729878715292*^9}],
+
+Cell[BoxData[
+ StyleBox["\<\"SQLiteOpenDatabase[databaseName] opens the database specified \
+by the string databaseName and returns a file handle. If no database exists, \
+then one is created.\"\>", "MSG"]], "Print", "PrintUsage",
+ CellChangeTimes->{3.566729878739139*^9},
+ CellTags->"Info3566729878-1208992"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["SignalGenerators", "Section",
+ CellChangeTimes->{{3.5453780335135527`*^9, 3.545378038251978*^9}, {
+  3.564477201559671*^9, 3.56447720735034*^9}, {3.5644820433049393`*^9, 
+  3.564482043688128*^9}, {3.564482153192766*^9, 3.564482158392585*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"GenerateHelp", "[", "\"\<SignalGenerators`\>\"", "]"}], 
+  ";"}]], "Input",
+ CellChangeTimes->{{3.5644819960285187`*^9, 3.564482046493178*^9}, {
+  3.564482161134892*^9, 3.564482164221805*^9}}]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{839, 994},
+WindowMargins->{{Automatic, -9}, {Automatic, -8}},
+ShowSelection->True,
+FrontEndVersion->"8.0 for Linux x86 (64-bit) (October 10, 2011)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{
+ "Info3566729871-1208992"->{
+  Cell[5558, 169, 484, 8, 100, "Print",
+   CellTags->"Info3566729871-1208992"]},
+ "Info3566729872-1208992"->{
+  Cell[6255, 183, 490, 8, 100, "Print",
+   CellTags->"Info3566729872-1208992"],
+  Cell[6924, 197, 1059, 17, 138, "Print",
+   CellTags->"Info3566729872-1208992"],
+  Cell[8187, 220, 1227, 19, 436, "Print",
+   CellTags->"Info3566729872-1208992"],
+  Cell[9614, 245, 2103, 30, 753, "Print",
+   CellTags->"Info3566729872-1208992"],
+  Cell[11918, 281, 1228, 19, 436, "Print",
+   CellTags->"Info3566729872-1208992"],
+  Cell[13354, 306, 2116, 31, 772, "Print",
+   CellTags->"Info3566729872-1208992"],
+  Cell[15664, 343, 1796, 26, 679, "Print",
+   CellTags->"Info3566729872-1208992"],
+  Cell[18057, 394, 738, 11, 248, "Print",
+   CellTags->"Info3566729872-1208992"]},
+ "Info3566729873-1208992"->{
+  Cell[18952, 411, 1172, 18, 473, "Print",
+   CellTags->"Info3566729873-1208992"],
+  Cell[20282, 435, 1134, 17, 473, "Print",
+   CellTags->"Info3566729873-1208992"],
+  Cell[21565, 458, 1003, 15, 435, "Print",
+   CellTags->"Info3566729873-1208992"],
+  Cell[22704, 479, 1041, 15, 452, "Print",
+   CellTags->"Info3566729873-1208992"],
+  Cell[24356, 519, 1135, 17, 454, "Print",
+   CellTags->"Info3566729873-1208992"],
+  Cell[25649, 542, 1877, 29, 715, "Print",
+   CellTags->"Info3566729873-1208992"],
+  Cell[27679, 577, 1169, 18, 492, "Print",
+   CellTags->"Info3566729873-1208992"],
+  Cell[29581, 621, 1317, 19, 399, "Print",
+   CellTags->"Info3566729873-1208992"],
+  Cell[31050, 646, 274, 5, 62, "Print",
+   CellTags->"Info3566729873-1208992"],
+  Cell[31493, 657, 1323, 20, 418, "Print",
+   CellTags->"Info3566729873-1208992"]},
+ "Info3566729874-1208992"->{
+  Cell[32980, 683, 1305, 19, 399, "Print",
+   CellTags->"Info3566729874-1208992"],
+  Cell[34452, 708, 1305, 19, 399, "Print",
+   CellTags->"Info3566729874-1208992"],
+  Cell[35925, 733, 1316, 19, 399, "Print",
+   CellTags->"Info3566729874-1208992"],
+  Cell[37408, 758, 1315, 20, 399, "Print",
+   CellTags->"Info3566729874-1208992"],
+  Cell[38894, 784, 1331, 20, 418, "Print",
+   CellTags->"Info3566729874-1208992"],
+  Cell[40385, 810, 705, 11, 287, "Print",
+   CellTags->"Info3566729874-1208992"],
+  Cell[41253, 827, 693, 11, 287, "Print",
+   CellTags->"Info3566729874-1208992"],
+  Cell[42090, 844, 1311, 20, 529, "Print",
+   CellTags->"Info3566729874-1208992"],
+  Cell[43541, 870, 1147, 17, 454, "Print",
+   CellTags->"Info3566729874-1208992"],
+  Cell[44849, 893, 1890, 29, 715, "Print",
+   CellTags->"Info3566729874-1208992"],
+  Cell[46891, 928, 1176, 18, 492, "Print",
+   CellTags->"Info3566729874-1208992"],
+  Cell[48241, 952, 1331, 20, 418, "Print",
+   CellTags->"Info3566729874-1208992"],
+  Cell[49740, 978, 1317, 19, 399, "Print",
+   CellTags->"Info3566729874-1208992"],
+  Cell[51225, 1003, 1317, 19, 399, "Print",
+   CellTags->"Info3566729874-1208992"],
+  Cell[52704, 1028, 1293, 19, 399, "Print",
+   CellTags->"Info3566729874-1208992"]},
+ "Info3566729875-1208992"->{
+  Cell[54719, 1073, 1297, 19, 399, "Print",
+   CellTags->"Info3566729875-1208992"],
+  Cell[56164, 1098, 271, 5, 62, "Print",
+   CellTags->"Info3566729875-1208992"],
+  Cell[56602, 1109, 1300, 19, 399, "Print",
+   CellTags->"Info3566729875-1208992"],
+  Cell[58066, 1134, 1299, 19, 399, "Print",
+   CellTags->"Info3566729875-1208992"],
+  Cell[59521, 1159, 700, 11, 287, "Print",
+   CellTags->"Info3566729875-1208992"],
+  Cell[60391, 1176, 1311, 20, 399, "Print",
+   CellTags->"Info3566729875-1208992"],
+  Cell[61868, 1202, 1297, 19, 399, "Print",
+   CellTags->"Info3566729875-1208992"],
+  Cell[63305, 1227, 1289, 19, 529, "Print",
+   CellTags->"Info3566729875-1208992"],
+  Cell[64732, 1252, 1123, 16, 454, "Print",
+   CellTags->"Info3566729875-1208992"],
+  Cell[66010, 1274, 1588, 23, 603, "Print",
+   CellTags->"Info3566729875-1208992"],
+  Cell[67747, 1303, 1049, 16, 454, "Print",
+   CellTags->"Info3566729875-1208992"],
+  Cell[68958, 1325, 1291, 19, 399, "Print",
+   CellTags->"Info3566729875-1208992"]},
+ "Info3566729876-1208992"->{
+  Cell[70956, 1370, 227, 4, 41, "Print",
+   CellTags->"Info3566729876-1208992"],
+  Cell[71313, 1380, 203, 4, 41, "Print",
+   CellTags->"Info3566729876-1208992"],
+  Cell[73545, 1447, 424, 7, 209, "Print",
+   CellTags->"Info3566729876-1208992"],
+  Cell[74120, 1460, 440, 7, 209, "Print",
+   CellTags->"Info3566729876-1208992"],
+  Cell[74720, 1473, 224, 4, 43, "Print",
+   CellTags->"Info3566729876-1208992"],
+  Cell[75093, 1483, 438, 7, 209, "Print",
+   CellTags->"Info3566729876-1208992"],
+  Cell[75685, 1496, 441, 7, 209, "Print",
+   CellTags->"Info3566729876-1208992"],
+  Cell[76278, 1509, 451, 7, 209, "Print",
+   CellTags->"Info3566729876-1208992"],
+  Cell[76886, 1522, 456, 7, 228, "Print",
+   CellTags->"Info3566729876-1208992"]},
+ "Info3566729898-1208992"->{
+  Cell[72362, 1413, 467, 8, 63, "Print",
+   CellTags->"Info3566729898-1208992"]},
+ "Info3566729877-1208992"->{
+  Cell[78058, 1555, 258, 5, 46, "Print",
+   CellTags->"Info3566729877-1208992"],
+  Cell[78472, 1566, 236, 4, 43, "Print",
+   CellTags->"Info3566729877-1208992"],
+  Cell[78866, 1576, 242, 4, 43, "Print",
+   CellTags->"Info3566729877-1208992"],
+  Cell[79261, 1586, 220, 4, 43, "Print",
+   CellTags->"Info3566729877-1208992"],
+  Cell[79629, 1596, 249, 5, 43, "Print",
+   CellTags->"Info3566729877-1208992"],
+  Cell[80611, 1627, 280, 5, 62, "Print",
+   CellTags->"Info3566729877-1208992"],
+  Cell[81052, 1638, 265, 5, 62, "Print",
+   CellTags->"Info3566729877-1208992"],
+  Cell[81482, 1649, 273, 5, 62, "Print",
+   CellTags->"Info3566729877-1208992"],
+  Cell[81912, 1660, 257, 5, 43, "Print",
+   CellTags->"Info3566729877-1208992"]},
+ "Info3566729878-1208992"->{
+  Cell[82890, 1691, 224, 4, 43, "Print",
+   CellTags->"Info3566729878-1208992"],
+  Cell[83270, 1701, 340, 6, 62, "Print",
+   CellTags->"Info3566729878-1208992"],
+  Cell[83770, 1713, 251, 4, 43, "Print",
+   CellTags->"Info3566729878-1208992"],
+  Cell[84179, 1723, 286, 5, 62, "Print",
+   CellTags->"Info3566729878-1208992"],
+  Cell[84623, 1734, 309, 5, 61, "Print",
+   CellTags->"Info3566729878-1208992"]}
+ }
+*)
+(*CellTagsIndex
+CellTagsIndex->{
+ {"Info3566729871-1208992", 85820, 1771},
+ {"Info3566729872-1208992", 85930, 1774},
+ {"Info3566729873-1208992", 86617, 1791},
+ {"Info3566729874-1208992", 87474, 1812},
+ {"Info3566729875-1208992", 88749, 1843},
+ {"Info3566729876-1208992", 89783, 1868},
+ {"Info3566729898-1208992", 90548, 1887},
+ {"Info3566729877-1208992", 90659, 1890},
+ {"Info3566729878-1208992", 91418, 1909}
+ }
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[579, 22, 448, 6, 88, "Title"],
+Cell[1030, 30, 532, 8, 30, "Text"],
+Cell[CellGroupData[{
+Cell[1587, 42, 38, 0, 39, "Subsection"],
+Cell[1628, 44, 740, 17, 296, "Text"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[2405, 66, 41, 0, 31, "Subsection"],
+Cell[2449, 68, 38, 3, 49, "Text"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[2524, 76, 31, 0, 31, "Subsection"],
+Cell[2558, 78, 176, 4, 30, "Text"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[2771, 87, 93, 1, 44, "Section"],
+Cell[2867, 90, 191, 2, 30, "Text"],
+Cell[3061, 94, 312, 7, 50, "Input"],
+Cell[3376, 103, 334, 7, 50, "Input"],
+Cell[3713, 112, 1243, 35, 88, "Input"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[4993, 152, 142, 2, 74, "Section"],
+Cell[CellGroupData[{
+Cell[5160, 158, 164, 3, 30, "Input"],
+Cell[CellGroupData[{
+Cell[5349, 165, 206, 2, 23, "Print"],
+Cell[5558, 169, 484, 8, 100, "Print",
+ CellTags->"Info3566729871-1208992"],
+Cell[6045, 179, 207, 2, 23, "Print"],
+Cell[6255, 183, 490, 8, 100, "Print",
+ CellTags->"Info3566729872-1208992"],
+Cell[6748, 193, 173, 2, 23, "Print"],
+Cell[6924, 197, 1059, 17, 138, "Print",
+ CellTags->"Info3566729872-1208992"],
+Cell[7986, 216, 198, 2, 23, "Print"],
+Cell[8187, 220, 1227, 19, 436, "Print",
+ CellTags->"Info3566729872-1208992"],
+Cell[9417, 241, 194, 2, 23, "Print"],
+Cell[9614, 245, 2103, 30, 753, "Print",
+ CellTags->"Info3566729872-1208992"],
+Cell[11720, 277, 195, 2, 23, "Print"],
+Cell[11918, 281, 1228, 19, 436, "Print",
+ CellTags->"Info3566729872-1208992"],
+Cell[13149, 302, 202, 2, 23, "Print"],
+Cell[13354, 306, 2116, 31, 772, "Print",
+ CellTags->"Info3566729872-1208992"],
+Cell[15473, 339, 188, 2, 23, "Print"],
+Cell[15664, 343, 1796, 26, 679, "Print",
+ CellTags->"Info3566729872-1208992"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[17521, 376, 190, 3, 74, "Section"],
+Cell[CellGroupData[{
+Cell[17736, 383, 163, 3, 30, "Input"],
+Cell[CellGroupData[{
+Cell[17924, 390, 130, 2, 23, "Print"],
+Cell[18057, 394, 738, 11, 248, "Print",
+ CellTags->"Info3566729872-1208992"],
+Cell[18798, 407, 151, 2, 23, "Print"],
+Cell[18952, 411, 1172, 18, 473, "Print",
+ CellTags->"Info3566729873-1208992"],
+Cell[20127, 431, 152, 2, 23, "Print"],
+Cell[20282, 435, 1134, 17, 473, "Print",
+ CellTags->"Info3566729873-1208992"],
+Cell[21419, 454, 143, 2, 23, "Print"],
+Cell[21565, 458, 1003, 15, 435, "Print",
+ CellTags->"Info3566729873-1208992"],
+Cell[22571, 475, 130, 2, 23, "Print"],
+Cell[22704, 479, 1041, 15, 452, "Print",
+ CellTags->"Info3566729873-1208992"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[23806, 501, 194, 3, 74, "Section"],
+Cell[CellGroupData[{
+Cell[24025, 508, 167, 3, 30, "Input"],
+Cell[CellGroupData[{
+Cell[24217, 515, 136, 2, 23, "Print"],
+Cell[24356, 519, 1135, 17, 454, "Print",
+ CellTags->"Info3566729873-1208992"],
+Cell[25494, 538, 152, 2, 23, "Print"],
+Cell[25649, 542, 1877, 29, 715, "Print",
+ CellTags->"Info3566729873-1208992"],
+Cell[27529, 573, 147, 2, 23, "Print"],
+Cell[27679, 577, 1169, 18, 492, "Print",
+ CellTags->"Info3566729873-1208992"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[28909, 602, 242, 3, 74, "Section"],
+Cell[CellGroupData[{
+Cell[29176, 609, 215, 4, 30, "Input"],
+Cell[CellGroupData[{
+Cell[29416, 617, 162, 2, 23, "Print"],
+Cell[29581, 621, 1317, 19, 399, "Print",
+ CellTags->"Info3566729873-1208992"],
+Cell[30901, 642, 146, 2, 23, "Print"],
+Cell[31050, 646, 274, 5, 62, "Print",
+ CellTags->"Info3566729873-1208992"],
+Cell[31327, 653, 163, 2, 23, "Print"],
+Cell[31493, 657, 1323, 20, 418, "Print",
+ CellTags->"Info3566729873-1208992"],
+Cell[32819, 679, 158, 2, 23, "Print"],
+Cell[32980, 683, 1305, 19, 399, "Print",
+ CellTags->"Info3566729874-1208992"],
+Cell[34288, 704, 161, 2, 23, "Print"],
+Cell[34452, 708, 1305, 19, 399, "Print",
+ CellTags->"Info3566729874-1208992"],
+Cell[35760, 729, 162, 2, 23, "Print"],
+Cell[35925, 733, 1316, 19, 399, "Print",
+ CellTags->"Info3566729874-1208992"],
+Cell[37244, 754, 161, 2, 23, "Print"],
+Cell[37408, 758, 1315, 20, 399, "Print",
+ CellTags->"Info3566729874-1208992"],
+Cell[38726, 780, 165, 2, 23, "Print"],
+Cell[38894, 784, 1331, 20, 418, "Print",
+ CellTags->"Info3566729874-1208992"],
+Cell[40228, 806, 154, 2, 23, "Print"],
+Cell[40385, 810, 705, 11, 287, "Print",
+ CellTags->"Info3566729874-1208992"],
+Cell[41093, 823, 157, 2, 23, "Print"],
+Cell[41253, 827, 693, 11, 287, "Print",
+ CellTags->"Info3566729874-1208992"],
+Cell[41949, 840, 138, 2, 23, "Print"],
+Cell[42090, 844, 1311, 20, 529, "Print",
+ CellTags->"Info3566729874-1208992"],
+Cell[43404, 866, 134, 2, 23, "Print"],
+Cell[43541, 870, 1147, 17, 454, "Print",
+ CellTags->"Info3566729874-1208992"],
+Cell[44691, 889, 155, 2, 23, "Print"],
+Cell[44849, 893, 1890, 29, 715, "Print",
+ CellTags->"Info3566729874-1208992"],
+Cell[46742, 924, 146, 2, 23, "Print"],
+Cell[46891, 928, 1176, 18, 492, "Print",
+ CellTags->"Info3566729874-1208992"],
+Cell[48070, 948, 168, 2, 23, "Print"],
+Cell[48241, 952, 1331, 20, 418, "Print",
+ CellTags->"Info3566729874-1208992"],
+Cell[49575, 974, 162, 2, 23, "Print"],
+Cell[49740, 978, 1317, 19, 399, "Print",
+ CellTags->"Info3566729874-1208992"],
+Cell[51060, 999, 162, 2, 23, "Print"],
+Cell[51225, 1003, 1317, 19, 399, "Print",
+ CellTags->"Info3566729874-1208992"],
+Cell[52545, 1024, 156, 2, 23, "Print"],
+Cell[52704, 1028, 1293, 19, 399, "Print",
+ CellTags->"Info3566729874-1208992"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[54058, 1054, 238, 3, 74, "Section"],
+Cell[CellGroupData[{
+Cell[54321, 1061, 212, 4, 30, "Input"],
+Cell[CellGroupData[{
+Cell[54558, 1069, 158, 2, 23, "Print"],
+Cell[54719, 1073, 1297, 19, 399, "Print",
+ CellTags->"Info3566729875-1208992"],
+Cell[56019, 1094, 142, 2, 23, "Print"],
+Cell[56164, 1098, 271, 5, 62, "Print",
+ CellTags->"Info3566729875-1208992"],
+Cell[56438, 1105, 161, 2, 23, "Print"],
+Cell[56602, 1109, 1300, 19, 399, "Print",
+ CellTags->"Info3566729875-1208992"],
+Cell[57905, 1130, 158, 2, 23, "Print"],
+Cell[58066, 1134, 1299, 19, 399, "Print",
+ CellTags->"Info3566729875-1208992"],
+Cell[59368, 1155, 150, 2, 23, "Print"],
+Cell[59521, 1159, 700, 11, 287, "Print",
+ CellTags->"Info3566729875-1208992"],
+Cell[60224, 1172, 164, 2, 23, "Print"],
+Cell[60391, 1176, 1311, 20, 399, "Print",
+ CellTags->"Info3566729875-1208992"],
+Cell[61705, 1198, 160, 2, 23, "Print"],
+Cell[61868, 1202, 1297, 19, 399, "Print",
+ CellTags->"Info3566729875-1208992"],
+Cell[63168, 1223, 134, 2, 23, "Print"],
+Cell[63305, 1227, 1289, 19, 529, "Print",
+ CellTags->"Info3566729875-1208992"],
+Cell[64597, 1248, 132, 2, 23, "Print"],
+Cell[64732, 1252, 1123, 16, 454, "Print",
+ CellTags->"Info3566729875-1208992"],
+Cell[65858, 1270, 149, 2, 23, "Print"],
+Cell[66010, 1274, 1588, 23, 603, "Print",
+ CellTags->"Info3566729875-1208992"],
+Cell[67601, 1299, 143, 2, 23, "Print"],
+Cell[67747, 1303, 1049, 16, 454, "Print",
+ CellTags->"Info3566729875-1208992"],
+Cell[68799, 1321, 156, 2, 23, "Print"],
+Cell[68958, 1325, 1291, 19, 399, "Print",
+ CellTags->"Info3566729875-1208992"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[70310, 1351, 243, 3, 74, "Section"],
+Cell[CellGroupData[{
+Cell[70578, 1358, 217, 4, 30, "Input"],
+Cell[CellGroupData[{
+Cell[70820, 1366, 133, 2, 23, "Print"],
+Cell[70956, 1370, 227, 4, 41, "Print",
+ CellTags->"Info3566729876-1208992"],
+Cell[71186, 1376, 124, 2, 23, "Print"],
+Cell[71313, 1380, 203, 4, 41, "Print",
+ CellTags->"Info3566729876-1208992"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[71577, 1391, 298, 4, 74, "Section"],
+Cell[CellGroupData[{
+Cell[71900, 1399, 250, 5, 30, "Input"],
+Cell[CellGroupData[{
+Cell[72175, 1408, 184, 3, 23, "Print"],
+Cell[72362, 1413, 467, 8, 63, "Print",
+ CellTags->"Info3566729898-1208992"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[72890, 1428, 241, 3, 74, "Section"],
+Cell[CellGroupData[{
+Cell[73156, 1435, 219, 4, 30, "Input"],
+Cell[CellGroupData[{
+Cell[73400, 1443, 142, 2, 23, "Print"],
+Cell[73545, 1447, 424, 7, 209, "Print",
+ CellTags->"Info3566729876-1208992"],
+Cell[73972, 1456, 145, 2, 23, "Print"],
+Cell[74120, 1460, 440, 7, 209, "Print",
+ CellTags->"Info3566729876-1208992"],
+Cell[74563, 1469, 154, 2, 23, "Print"],
+Cell[74720, 1473, 224, 4, 43, "Print",
+ CellTags->"Info3566729876-1208992"],
+Cell[74947, 1479, 143, 2, 23, "Print"],
+Cell[75093, 1483, 438, 7, 209, "Print",
+ CellTags->"Info3566729876-1208992"],
+Cell[75534, 1492, 148, 2, 23, "Print"],
+Cell[75685, 1496, 441, 7, 209, "Print",
+ CellTags->"Info3566729876-1208992"],
+Cell[76129, 1505, 146, 2, 23, "Print"],
+Cell[76278, 1509, 451, 7, 209, "Print",
+ CellTags->"Info3566729876-1208992"],
+Cell[76732, 1518, 151, 2, 23, "Print"],
+Cell[76886, 1522, 456, 7, 228, "Print",
+ CellTags->"Info3566729876-1208992"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[77403, 1536, 238, 3, 74, "Section"],
+Cell[CellGroupData[{
+Cell[77666, 1543, 214, 4, 30, "Input"],
+Cell[CellGroupData[{
+Cell[77905, 1551, 150, 2, 23, "Print"],
+Cell[78058, 1555, 258, 5, 46, "Print",
+ CellTags->"Info3566729877-1208992"],
+Cell[78319, 1562, 150, 2, 23, "Print"],
+Cell[78472, 1566, 236, 4, 43, "Print",
+ CellTags->"Info3566729877-1208992"],
+Cell[78711, 1572, 152, 2, 23, "Print"],
+Cell[78866, 1576, 242, 4, 43, "Print",
+ CellTags->"Info3566729877-1208992"],
+Cell[79111, 1582, 147, 2, 23, "Print"],
+Cell[79261, 1586, 220, 4, 43, "Print",
+ CellTags->"Info3566729877-1208992"],
+Cell[79484, 1592, 142, 2, 23, "Print"],
+Cell[79629, 1596, 249, 5, 43, "Print",
+ CellTags->"Info3566729877-1208992"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[79939, 1608, 243, 3, 74, "Section"],
+Cell[CellGroupData[{
+Cell[80207, 1615, 217, 4, 30, "Input"],
+Cell[CellGroupData[{
+Cell[80449, 1623, 159, 2, 23, "Print"],
+Cell[80611, 1627, 280, 5, 62, "Print",
+ CellTags->"Info3566729877-1208992"],
+Cell[80894, 1634, 155, 2, 23, "Print"],
+Cell[81052, 1638, 265, 5, 62, "Print",
+ CellTags->"Info3566729877-1208992"],
+Cell[81320, 1645, 159, 2, 23, "Print"],
+Cell[81482, 1649, 273, 5, 62, "Print",
+ CellTags->"Info3566729877-1208992"],
+Cell[81758, 1656, 151, 2, 23, "Print"],
+Cell[81912, 1660, 257, 5, 43, "Print",
+ CellTags->"Info3566729877-1208992"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[82230, 1672, 240, 3, 74, "Section"],
+Cell[CellGroupData[{
+Cell[82495, 1679, 214, 4, 30, "Input"],
+Cell[CellGroupData[{
+Cell[82734, 1687, 153, 2, 23, "Print"],
+Cell[82890, 1691, 224, 4, 43, "Print",
+ CellTags->"Info3566729878-1208992"],
+Cell[83117, 1697, 150, 2, 23, "Print"],
+Cell[83270, 1701, 340, 6, 62, "Print",
+ CellTags->"Info3566729878-1208992"],
+Cell[83613, 1709, 154, 2, 23, "Print"],
+Cell[83770, 1713, 251, 4, 43, "Print",
+ CellTags->"Info3566729878-1208992"],
+Cell[84024, 1719, 152, 2, 23, "Print"],
+Cell[84179, 1723, 286, 5, 62, "Print",
+ CellTags->"Info3566729878-1208992"],
+Cell[84468, 1730, 152, 2, 23, "Print"],
+Cell[84623, 1734, 309, 5, 61, "Print",
+ CellTags->"Info3566729878-1208992"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[84993, 1746, 248, 3, 74, "Section"],
+Cell[85244, 1751, 227, 5, 30, "Input"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)

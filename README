@@ -11,7 +11,7 @@ E-mail: donaghh@rennes.ucc.ie
 
 === Copyright ===
 
-Copyright (C) 2011-2013 Donagh Horgan. Licensed under GPLv3, see COPYING for 
+Copyright (C) 2011-2013 Donagh Horgan. Licensed under GPLv3, see LICENSE for 
 more info.
 
 
@@ -30,4 +30,4 @@ The repository is organised as follows:
     reproducing results, some functions may attempt to look them up in the 
     database. This functionality can be controlled using the DatabaseLookup 
     option - see the documentation notebook for more information.
-  * Licensing information is contained in COPYING.
+  * Licensing information is contained in LICENSE.

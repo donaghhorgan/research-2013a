@@ -24,7 +24,7 @@ The repository is organised as follows:
   * The .m files are Mathematica packages, providing function definitions 
     used in the notebooks - you do not need to edit these directly (in fact, 
     you don't have to look at them at all if you don't want to - Mathematica 
-    will load them at runtime).
+    will load them at runtime). For information on individual functions, see help.nb.
   * The data.sqlite file is an SQLite database used to store numerical results 
     generated during the course of writing some papers. To save time 
     reproducing results, some functions may attempt to look them up in the 
